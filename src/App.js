@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+
+const vinmonopolet = require('vinmonopolet');
+
 class App extends Component {
+
   render() {
+
+      vinmonopolet.getProducts().then(response => {
+          console.log(response.products);// Array of products
+          console.log(response.pagination); // Info on pagination
+      });
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={"resources/vinmonopolet.png"} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
@@ -19,7 +27,6 @@ class App extends Component {
           >
             Learn React
           </a>
-        </header>
       </div>
     );
   }
