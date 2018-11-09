@@ -1,7 +1,8 @@
-import React from "react";
-import { Table } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { Table } from 'semantic-ui-react';
 
-class listItem extends React.Component {
+
+class ListItem extends Component {
 
     render() {
         return (
@@ -17,4 +18,4 @@ class listItem extends React.Component {
     }
 }
 
-export default listItem;
+export default ListItem;

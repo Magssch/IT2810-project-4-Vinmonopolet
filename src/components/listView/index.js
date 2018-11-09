@@ -1,12 +1,13 @@
-import React from "react";
-import listItem from "./listItem";
-import { Table } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import ListItem from './ListItem';
+import { Table } from 'semantic-ui-react';
+import './ListView.css';
 
-class listView extends React.Component {
+class ListView extends Component {
 
     render() {
         return (
-            <Table fixed>
+            <Table fixed size={'large'}>
                 <Table.Header>
                     <Table.Row>
                         <th>Navn</th>
@@ -20,8 +21,8 @@ class listView extends React.Component {
                 <Table.Body>
                     {
                         this.props.items.map(
-                            item => <listItem
-                                        key={item._id}
+                            item => <ListItem
+                                        key={item.Varenummer}
                                         name={item.Varenavn}
                                         type={item.Varetype}
                                         volume={item.Volum}
@@ -36,5 +37,5 @@ class listView extends React.Component {
     }
 }
 
-export default listView;
+export default ListView;
 
