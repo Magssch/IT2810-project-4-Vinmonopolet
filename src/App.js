@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import ListView from './Components/ListView';
-import {Table} from "semantic-ui-react";
 
 
 class App extends Component {

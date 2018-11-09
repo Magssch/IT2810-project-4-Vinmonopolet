@@ -7,7 +7,7 @@ class ListView extends Component {
 
     render() {
         return (
-            <Table fixed size={'large'}>
+            <Table fixed selectable size={'large'}>
                 <Table.Header>
                     <Table.Row>
                         <th>Navn</th>
