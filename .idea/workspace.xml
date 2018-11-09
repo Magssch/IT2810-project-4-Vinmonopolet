@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d44ecab0-bacb-4a08-ae21-4c9e93be7f66" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/listView/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/listView/listItem/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
@@ -36,31 +37,33 @@
         <counts>
           <entry key="css" value="2" />
           <entry key="csv" value="1" />
-          <entry key="js" value="1" />
+          <entry key="js" value="4" />
           <entry key="json" value="1" />
           <entry key="md" value="1" />
+          <entry key="ts" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="2" />
           <entry key="JSON" value="1" />
-          <entry key="JavaScript" value="1" />
+          <entry key="JavaScript" value="4" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
+          <entry key="TypeScript" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="32" />
-          <entry key="js" value="148" />
+          <entry key="js" value="847" />
           <entry key="md" value="71" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="32" />
-          <entry key="JavaScript" value="148" />
+          <entry key="JavaScript" value="847" />
           <entry key="Markdown" value="71" />
         </counts>
       </usages-collector>
@@ -71,10 +74,34 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+            <state relative-caret-position="48">
+              <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/listView/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="32">
+              <caret line="2" column="41" lean-forward="true" selection-start-line="1" selection-start-column="34" selection-end-line="2" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/listView/listItem/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="32">
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -108,9 +135,18 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>,&quot;</find>
+      <find>&lt;td&gt;</find>
+      <find>&lt;/td&gt;</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -122,6 +158,9 @@
         <option value="$USER_HOME$/Desktop/npmtest/prod.csv" />
         <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/components/listView/index.js" />
+        <option value="$PROJECT_DIR$/src/components/listView/listItem/index.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
       </list>
     </option>
@@ -140,11 +179,12 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
       <path value="$PROJECT_DIR$/package.json" />
+      <path value="$PROJECT_DIR$/semantic/tasks/config/admin/templates/package.json" />
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="40" />
-    <option name="width" value="950" />
+    <option name="width" value="1070" />
     <option name="height" value="1090" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -169,7 +209,33 @@
             <path>
               <item name="gruppe46" type="b2602c69:ProjectViewProjectNode" />
               <item name="gruppe46" type="462c0819:PsiDirectoryNode" />
+              <item name="semantic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gruppe46" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gruppe46" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gruppe46" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gruppe46" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gruppe46" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gruppe46" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="listView" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gruppe46" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gruppe46" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="listView" type="462c0819:PsiDirectoryNode" />
+              <item name="listItem" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -179,7 +245,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../it2810-webutvikling-h18-prosjekt-2-gruppe--46" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -217,18 +283,18 @@
       <workItem from="1540907622217" duration="4991000" />
       <workItem from="1541155273282" duration="21000" />
       <workItem from="1541248531829" duration="47000" />
-      <workItem from="1541537186775" duration="4227000" />
+      <workItem from="1541537186775" duration="9695000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12233000" />
+    <option name="totallyTimeSpent" value="17701000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="34" y="-7" width="1510" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.089613035" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10997964" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -242,7 +308,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.17986578" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.17986578" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -257,16 +323,6 @@
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/Desktop/npmtest/db.json" />
     <entry file="file://$USER_HOME$/Desktop/npmtest/prod.csv" />
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -284,6 +340,53 @@
             <caret line="7" selection-start-line="7" selection-end-line="7" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="990" column="8" selection-start-line="990" selection-start-column="8" selection-end-line="990" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/listView/listItem/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/listView/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="41" lean-forward="true" selection-start-line="1" selection-start-column="34" selection-end-line="2" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
