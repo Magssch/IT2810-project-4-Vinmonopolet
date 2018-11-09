@@ -1,3 +1,7 @@
 ##Kilder
 
-* https://www.npmjs.com/package/vinmonopolet
+* React Semantic UI:
+https://react.semantic-ui.com/
+
+* Vinmonopolet produktdatabase:
+https://www.vinmonopolet.no/datadeling

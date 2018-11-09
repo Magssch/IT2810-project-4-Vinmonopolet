@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 
-
-const vinmonopolet = require('vinmonopolet');
-
 class App extends Component {
 
   render() {
-
-      vinmonopolet.getProducts().then(response => {
-          console.log(response.products);// Array of products
-          console.log(response.pagination); // Info on pagination
-      });
 
     return (
       <div className="App">
