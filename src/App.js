@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
 import './App.css';
 import ListView from './Components/ListView';
-
+import Search from './Components/Search';
+import Query from './Components/Query';
+import { Form } from 'semantic-ui-react';
 
 class App extends Component {
 
-    state = {
+    constructor() {
+        super();
+        this.handleChange = this.handleChange.bind(this);
+    }
 
-        // skal erstattes med Redux
+    // TODO skal erstattes med Redux
+    state = {
+        isLoading: false,
+        searchQuery: {
+            name: null,
+            volume: null,
+        },
         items: [{
             "_id": "5bdd8a695402002b2ef1b0e7",
             "Varenummer": 6505103,
@@ -39,13 +50,27 @@ class App extends Component {
         }]
     };
 
-  render() {
-    return (
-      <div className="App">
-          <img src={"resources/vinmonopolet.png"} className="App-logo" alt="logo" />
-          <ListView items={this.state.items} />
-      </div>
-    );
+    handleChange = ({ name, value }) =>
+    {
+        this.setState({isLoading: true, searchQuery: {[name]: value}})
+    };
+
+
+    render() {
+        return (
+          <div className="App">
+              <img className="App-logo" src={"../resources/vinmonopolet.png"} alt={"Vinmonopolet"} />
+              <Form style={{width: "80%"}}>
+                  <Form.Group>
+                    <Search isLoading={this.state.isLoading} onChange={this.handleChange}/>
+                      <Query name="volume" onChange={this.handleChange}/>
+                  </Form.Group>
+              </Form>
+              <ListView items={this.state.items} />
+              <br/>
+              {this.state.searchQuery.name}
+          </div>
+        );
   }
 }
 

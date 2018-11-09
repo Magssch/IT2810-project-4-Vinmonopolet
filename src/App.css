@@ -1,12 +1,21 @@
 .App {
-  text-align: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .App-logo {
-  width: 40%;
-  padding: 30px;
-}
-
-.App-link {
-  color: #61dafb;
+    padding: 30px;
+    width: 60%;
+    max-width: 450px;
+    max-height: 300px;
 }

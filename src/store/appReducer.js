@@ -14,4 +14,4 @@ export const appReducer = (state = initialState, action) => {
     }
 };
 
-export const setMessage = messageText => ({ type: 'SET_MESSAGE', message: messageText });
+export const setMessage = messageText => ({ t|ype: 'SET_MESSAGE', message: messageText });
