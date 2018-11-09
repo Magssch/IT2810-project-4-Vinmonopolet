@@ -25,3 +25,4 @@ yarn-error.log*
 =======
 .idea/gruppe46.iml
 >>>>>>> f2388e74ec2dc2f38a6f8934e2a8c1eea10528d5
+*.xml

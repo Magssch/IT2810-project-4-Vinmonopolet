@@ -44,7 +44,7 @@ class App extends Component {
     return (
       <div className="App">
           <img src={"resources/vinmonopolet.png"} className="App-logo" alt="logo" />
-          <listView items={this.state.items} />
+          <ListView items={this.state.items} />
       </div>
     );
   }
