@@ -4,6 +4,10 @@ import ListView from './Components/ListView';
 import Search from './Components/Search';
 import Query from './Components/Query';
 import { Form } from 'semantic-ui-react';
+import PieChart from './Components/PieChart';
+import BarChart from './Components/BarChart';
+import DoughnutChart from './Components/DoughnutChart';
+import LineChart from './Components/LineChart';
 
 class App extends Component {
 
@@ -106,7 +110,8 @@ class App extends Component {
             "Produsent": "Fossa Mala",
             "Vareurl": "http://www.vinmonopolet.no/vareutvalg/varedetaljer/sku-10148302",
             "APK": 0.055
-        },]
+        },],
+            chartData: {},
     };
 
     volumeOptions = [{key: 0.33, value: 0.33, text: '0.33 l'}, {key: 0.5, value: 0.5, text: '0.5 l'}];
@@ -139,6 +144,41 @@ class App extends Component {
               {this.state.searchQuery.volume}
           </div>
         );
+
+    componentWillMount() {
+        this.getChartData();
+    }
+
+    getChartData() {
+        // Her vil vi implementere Ajax/Axios
+        this.setState({
+           chartData: {
+               labels: ['beers', 'wine', 'liquor'],
+               datasets:[{
+                   label: 'number of units',
+                   data: [10 , 20, 30, 0],
+                   backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 245, 0.6)', 'rgba(255, 206, 86, 0.6)'],
+               }],
+           }
+        });
+    }
+
+
+  render() {
+    return (
+        <div>
+            <div className="App">
+                <img src={"resources/vinmonopolet.png"} className="App-logo" alt="logo" />
+                <ListView items={this.state.items} />
+            </div>
+            <div className="chartContainer">
+                <LineChart chartData={this.state.chartData} legendPosition="bottom" topText="Line"/>
+                <PieChart chartData={this.state.chartData} legendPosition="bottom" topText="Pie"/>
+                <DoughnutChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
+                <BarChart chartData={this.state.chartData} legendPosition="bottom" topText="Bar"/>
+            </div>
+        </div>
+    );
   }
 }
 
