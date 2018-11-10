@@ -118,6 +118,10 @@ class App extends Component {
     countryOptions = [{key: "no", value: "no", text: 'Norge'}, {key: "fr", value: "fr", text: "Frankrike"}];
     typeOptions = [{key: "wi", value: "wi", text: 'Vin'}, {key: "be", value: "be", text: "Øl"}];
 
+    componentWillMount(){
+        this.getChartData();
+    };
+
     handleChange = ({ name, value }) =>
     {
         let newQuery = this.state.searchQuery;
@@ -125,61 +129,44 @@ class App extends Component {
         this.setState({isLoading: true, searchQuery: newQuery})
     };
 
-    render() {
-        return (
-          <div className="App">
-              <img className="App-logo" src={"../resources/vinmonopolet.png"} alt={"Vinmonopolet"} />
-              <Form style={{width: "80%"}}>
-                  <Form.Group>
-                      <Search isLoading={this.state.isLoading} onChange={this.handleChange}/>
-                      <Query name="volume" placeholder="Volum" options={this.volumeOptions} onChange={this.handleChange}/>
-                      <Query name="country" placeholder="Land" options={this.countryOptions} onChange={this.handleChange}/>
-                      <Query name="type" placeholder="Type" options={this.typeOptions} onChange={this.handleChange}/>
-                  </Form.Group>
-              </Form>
-              <ListView items={this.state.items} />
-              <br/>
-              {this.state.searchQuery.name}
-              <br/>
-              {this.state.searchQuery.volume}
-          </div>
-        );
-
-    componentWillMount() {
-        this.getChartData();
-    }
-
     getChartData() {
         // Her vil vi implementere Ajax/Axios
         this.setState({
-           chartData: {
-               labels: ['beers', 'wine', 'liquor'],
-               datasets:[{
-                   label: 'number of units',
-                   data: [10 , 20, 30, 0],
-                   backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 245, 0.6)', 'rgba(255, 206, 86, 0.6)'],
-               }],
-           }
+            chartData: {
+                labels: ['beers', 'wine', 'liquor'],
+                datasets:[{
+                    label: 'number of units',
+                    data: [10 , 20, 30, 0],
+                    backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 245, 0.6)', 'rgba(255, 206, 86, 0.6)'],
+                }],
+            }
         });
     }
 
-
-  render() {
-    return (
-        <div>
+    render() {
+        return (
             <div className="App">
-                <img src={"resources/vinmonopolet.png"} className="App-logo" alt="logo" />
-                <ListView items={this.state.items} />
+                <img className="App-logo" src={"../resources/vinmonopolet.png"} alt={"Vinmonopolet"}/>
+                <Form style={{width: "80%"}}>
+                    <Form.Group>
+                        <Search isLoading={this.state.isLoading} onChange={this.handleChange}/>
+                        <Query name="volume" placeholder="Volum" options={this.volumeOptions}
+                               onChange={this.handleChange}/>
+                        <Query name="country" placeholder="Land" options={this.countryOptions}
+                               onChange={this.handleChange}/>
+                        <Query name="type" placeholder="Type" options={this.typeOptions} onChange={this.handleChange}/>
+                    </Form.Group>
+                </Form>
+                <ListView items={this.state.items}/>
+                <div className="chartContainer">
+                    <LineChart chartData={this.state.chartData} legendPosition="bottom" topText="Line"/>
+                    <PieChart chartData={this.state.chartData} legendPosition="bottom" topText="Pie"/>
+                    <DoughnutChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
+                    <BarChart chartData={this.state.chartData} legendPosition="bottom" topText="Bar"/>
+                </div>
             </div>
-            <div className="chartContainer">
-                <LineChart chartData={this.state.chartData} legendPosition="bottom" topText="Line"/>
-                <PieChart chartData={this.state.chartData} legendPosition="bottom" topText="Pie"/>
-                <DoughnutChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
-                <BarChart chartData={this.state.chartData} legendPosition="bottom" topText="Bar"/>
-            </div>
-        </div>
-    );
-  }
+        );
+    }
 }
 
 export default App;
