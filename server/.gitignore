@@ -83,3 +83,29 @@ fabric.properties
 .idea/sonarlint
 
 # End of https://www.gitignore.io/api/webstorm
+
+
+client/.DS_Store
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
+
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
+client/*.xml
+client/.idea/gruppe46.iml
+
+# dependencies
+client/node_modules/
+client/node_modules/.bin/
+
+node_modules/
+/node_modules
+
+# testing
+client/coverage
+
+# production
+client/build
