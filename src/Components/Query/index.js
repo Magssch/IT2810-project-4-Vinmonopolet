@@ -10,11 +10,9 @@ class Query extends Component {
     handleChange = (e, { name, value }) =>
         this.props.onChange({name, value});
 
-    countryOptions = [ { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' }]
-
     render() {
         return (
-            <Form.Dropdown placeholder='Select Country' fluid search selection name={this.props.name} options={this.countryOptions} onChange={this.handleChange}  />
+            <Form.Dropdown placeholder={this.props.placeholder} fluid search selection name={this.props.name} options={this.props.options} onChange={this.handleChange}  />
         );
     }
 }

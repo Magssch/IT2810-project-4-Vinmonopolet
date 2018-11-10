@@ -11,7 +11,8 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.83.0",
-    "vinmonopolet": "^5.1.0"
+    "vinmonopolet": "^5.1.0",
+    "lodash": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
