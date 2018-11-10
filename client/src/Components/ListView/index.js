@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ListItem from './ListItem';
+import ListItem from './ListItem/index';
 import { Table } from 'semantic-ui-react';
 import './ListView.css';
 import _ from 'lodash';
