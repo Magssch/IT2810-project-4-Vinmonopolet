@@ -2,25 +2,82 @@ import React, { Component } from 'react';
 import ListItem from './ListItem';
 import { Table } from 'semantic-ui-react';
 import './ListView.css';
+import _ from 'lodash';
 
 class ListView extends Component {
+    state = {
+        column: null,
+        data: this.props.items,
+        direction: null,
+    };
+
+    handleSort = clickedColumn => () => {
+        const { column, data, direction } = this.state;
+
+        if (column !== clickedColumn) {
+            this.setState({
+                column: clickedColumn,
+                data: _.sortBy(data, [clickedColumn]),
+                direction: 'ascending',
+            });
+
+            return
+        }
+
+        this.setState({
+            data: data.reverse(),
+            direction: direction === 'ascending' ? 'descending' : 'ascending',
+        })
+    };
 
     render() {
+        const { column, data, direction } = this.state;
+
         return (
-            <Table fixed size={'large'}>
+            <Table inverted sortable fixed selectable collapsing size={'large'}>
                 <Table.Header>
                     <Table.Row>
-                        <th>Navn</th>
-                        <th>Varetype</th>
-                        <th>Volum</th>
-                        <th>Pris</th>
-                        <th>Land</th>
-                        <th>Årgang</th>
+                        <Table.HeaderCell
+                            sorted={column === 'Varenavn' ? direction : null}
+                            onClick={this.handleSort('Varenavn')}
+                        >
+                            Varenavn
+                        </Table.HeaderCell>
+                        <Table.HeaderCell
+                            sorted={column === 'Varetype' ? direction : null}
+                            onClick={this.handleSort('Varetype')}
+                        >
+                            Varetype
+                        </Table.HeaderCell>
+                        <Table.HeaderCell
+                            sorted={column === 'Volum' ? direction : null}
+                            onClick={this.handleSort('Volum')}
+                        >
+                            Volum
+                        </Table.HeaderCell>
+                        <Table.HeaderCell
+                            sorted={column === 'Pris' ? direction : null}
+                            onClick={this.handleSort('Pris')}
+                        >
+                            Pris
+                        </Table.HeaderCell>
+                        <Table.HeaderCell
+                            sorted={column === 'Land' ? direction : null}
+                            onClick={this.handleSort('Land')}
+                        >
+                            Land
+                        </Table.HeaderCell>
+                        <Table.HeaderCell
+                            sorted={column === 'Argang' ? direction : null}
+                            onClick={this.handleSort('Argang')}
+                        >
+                            Årgang
+                        </Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
                     {
-                        this.props.items.map(
+                        data.map(
                             item => <ListItem
                                         key={item.Varenummer}
                                         name={item.Varenavn}
