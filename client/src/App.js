@@ -104,7 +104,7 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-    this.syncNewQuery: query => dispatch(syncNewSearchQuery(query)),
+    syncNewQuery: query => dispatch(syncNewSearchQuery(query)),
 });
 
 export default connect(
