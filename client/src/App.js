@@ -139,7 +139,7 @@ class App extends Component {
     };
 
     getChartData() {
-        // Her vil vi implementere Ajax/Axios
+        // Her vil vi implementere Ajax/Axios eller hva faen.
         this.setState({
             chartData: {
                 labels: ['beers', 'wine', 'liquor'],
@@ -170,19 +170,21 @@ class App extends Component {
                     </Form.Group>
                 </Form>
                 <div>
-                    <button onClick={this.onOpenModal}>Open modal</button>
                     <Modal
                         open={open}
-                        onClose={this.onCloseModal}
+                        onClose={this.onCloseModal.bind(this)}
                         showCloseIcon={false}
                         center={true}>
                         <h2>Simple centered modal</h2>
                         <div className="chartContainer">
                             <DoughnutChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
+                            <PieChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
+                            <LineChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
+                            <BarChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
                         </div>
                     </Modal>
                 </div>
-                <ListView items={this.state.items}/>
+                <ListView items={this.state.items} onClick={() => this.onOpenModal}/>
             </div>
         );
     }
