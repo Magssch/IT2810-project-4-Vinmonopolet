@@ -54,7 +54,7 @@ class ListView extends Component {
                         </Table.HeaderCell>
                         <Table.HeaderCell
                             sorted={column === 'Volum' ? direction : null}
-                            onClick={this.handleChange()}
+                            onClick={this.handleSort('Volum')}
                         >
                             Volum
                         </Table.HeaderCell>
