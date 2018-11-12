@@ -75,7 +75,6 @@ class AppContent extends Component {
                         <Query name="type" placeholder="Type" options={this.typeOptions} onChange={this.handleChange}/>
                     </Form.Group>
                 </Form>
-                <div>
                     <Modal
                         open={open}
                         onClose={this.onCloseModal.bind(this)}
