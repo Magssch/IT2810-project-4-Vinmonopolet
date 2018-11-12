@@ -11,7 +11,7 @@ import DoughnutChart from './Components/DoughnutChart';
 import LineChart from './Components/LineChart';
 import { syncNewSearchQuery, addPost } from './reduxTest';
 
-class App extends Component {
+class AppContent extends Component {
 
     constructor() {
         super();
@@ -20,6 +20,7 @@ class App extends Component {
 
     // TODO skal erstattes med Redux
     state = {
+        /*
         isLoading: false,
         searchQuery: {
             name: null,
@@ -112,7 +113,7 @@ class App extends Component {
             "Produsent": "Fossa Mala",
             "Vareurl": "http://www.vinmonopolet.no/vareutvalg/varedetaljer/sku-10148302",
             "APK": 0.055
-        },],
+        },],*/
             chartData: {},
     };
 
@@ -155,7 +156,11 @@ class App extends Component {
                         <Query name="type" placeholder="Type" options={this.typeOptions} onChange={this.handleChange}/>
                     </Form.Group>
                 </Form>
-                <ListView items={this.state.items}/>
+                <p>{this.props.search_query.name}</p>
+                <p>{this.props.search_query.type}</p>
+                <p>{this.props.search_query.country}</p>
+                <p>{this.props.search_query.volume}</p>
+                <ListView items={this.props.items}/>
                 <div className="chartContainer">
                     <LineChart chartData={this.state.chartData} legendPosition="bottom" topText="Line"/>
                     <PieChart chartData={this.state.chartData} legendPosition="bottom" topText="Pie"/>
@@ -169,8 +174,8 @@ class App extends Component {
 
 
 const mapState = state => ({
-    name: state.name,
-    search_query: state.search_query
+    search_query: state.search_query,
+    items: state.items
 });
 
 const mapDispatch = dispatch => ({
@@ -180,5 +185,5 @@ const mapDispatch = dispatch => ({
 export default connect(
     mapState,
     mapDispatch
-)(App);
+)(AppContent);
 
