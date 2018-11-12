@@ -9,6 +9,8 @@ import BarChart from './Components/BarChart';
 import DoughnutChart from './Components/DoughnutChart';
 import LineChart from './Components/LineChart';
 import axios from 'axios';
+import Modal from "react-responsive-modal";
+
 
 class App extends Component {
 
@@ -130,8 +132,16 @@ class App extends Component {
         this.setState({isLoading: true, searchQuery: newQuery})
     };
 
+    onOpenModal = () => {
+        this.setState({ open: true });
+    };
+
+    onCloseModal = () => {
+        this.setState({ open: false });
+    };
+
     getChartData() {
-        // Her vil vi implementere Ajax/Axios
+        // Her vil vi implementere Ajax/Axios eller hva faen.
         this.setState({
             chartData: {
                 labels: ['beers', 'wine', 'liquor'],
@@ -145,6 +155,9 @@ class App extends Component {
     }
 
     render() {
+
+        const { open } = this.state;
+
         return (
             <div className="App">
                 <img className="App-logo" src={"../resources/vinmonopolet.png"} alt={"Vinmonopolet"}/>
@@ -158,13 +171,22 @@ class App extends Component {
                         <Query name="type" placeholder="Type" options={this.typeOptions} onChange={this.handleChange}/>
                     </Form.Group>
                 </Form>
-                <ListView items={this.state.items}/>
-                <div className="chartContainer">
-                    <LineChart chartData={this.state.chartData} legendPosition="bottom" topText="Line"/>
-                    <PieChart chartData={this.state.chartData} legendPosition="bottom" topText="Pie"/>
-                    <DoughnutChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
-                    <BarChart chartData={this.state.chartData} legendPosition="bottom" topText="Bar"/>
+                <div>
+                    <Modal
+                        open={open}
+                        onClose={this.onCloseModal.bind(this)}
+                        showCloseIcon={false}
+                        center={true}>
+                        <h2>Simple centered modal</h2>
+                        <div className="chartContainer">
+                            <DoughnutChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
+                            <PieChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
+                            <LineChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
+                            <BarChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
+                        </div>
+                    </Modal>
                 </div>
+                <ListView items={this.state.items} onClick={() => this.onOpenModal}/>
             </div>
         );
     }

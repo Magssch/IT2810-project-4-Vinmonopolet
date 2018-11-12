@@ -11,6 +11,9 @@ class ListView extends Component {
         direction: null,
     };
 
+    handleChange = () =>
+        this.props.onClick();
+
     handleSort = clickedColumn => () => {
         const { column, data, direction } = this.state;
 
@@ -51,7 +54,7 @@ class ListView extends Component {
                         </Table.HeaderCell>
                         <Table.HeaderCell
                             sorted={column === 'Volum' ? direction : null}
-                            onClick={this.handleSort('Volum')}
+                            onClick={this.handleChange()}
                         >
                             Volum
                         </Table.HeaderCell>
@@ -86,6 +89,7 @@ class ListView extends Component {
                                         price={item.Pris}
                                         country={item.Land}
                                         year={item.Argang}
+                                        onClick={this.handleChange}
                                     />)
                     }
                 </Table.Body>
