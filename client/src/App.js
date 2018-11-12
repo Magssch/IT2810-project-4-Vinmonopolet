@@ -11,7 +11,7 @@ import DoughnutChart from './Components/DoughnutChart';
 import LineChart from './Components/LineChart';
 import axios from 'axios';
 import Modal from "react-responsive-modal";
-import { syncNewSearchQuery } from './reduxTest';
+import {syncNewSearchQuery, updateItems} from './reduxTest';
 
 class AppContent extends Component {
 
@@ -35,6 +35,14 @@ class AppContent extends Component {
 
     handleChange = ({ name, value }) =>
         this.props.syncNewQuery({ name, value });
+
+    // TODO implementer axios
+    fetchItems = () => {
+
+        // gjør axios-fetch
+        let result = {};
+        this.props.update_items(result);
+    }
 
     onOpenModal = () => {
         this.setState({ open: true });
@@ -67,7 +75,7 @@ class AppContent extends Component {
                 <img className="App-logo" src={"../resources/vinmonopolet.png"} alt={"Vinmonopolet"}/>
                 <Form style={{width: "80%"}}>
                     <Form.Group>
-                        <Search isLoading={this.state.isLoading} onChange={this.handleChange}/>
+                        <Search isLoading={this.props.isLoading} onChange={this.handleChange}/>
                         <Query name="volume" placeholder="Volum" options={this.volumeOptions}
                                onChange={this.handleChange}/>
                         <Query name="country" placeholder="Land" options={this.countryOptions}
@@ -100,11 +108,13 @@ class AppContent extends Component {
 
 const mapState = state => ({
     search_query: state.search_query,
-    items: state.items
+    items: state.items,
+    isLoading: state.isLoading
 });
 
 const mapDispatch = dispatch => ({
     syncNewQuery: query => dispatch(syncNewSearchQuery(query)),
+    update_items: result => dispatch(updateItems(result)),
 });
 
 export default connect(
