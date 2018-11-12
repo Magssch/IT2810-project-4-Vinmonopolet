@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import ListView from './Components/ListView';
 import Search from './Components/Search';
@@ -8,6 +9,7 @@ import PieChart from './Components/PieChart';
 import BarChart from './Components/BarChart';
 import DoughnutChart from './Components/DoughnutChart';
 import LineChart from './Components/LineChart';
+import { syncNewSearchQuery, addPost } from './reduxTest';
 
 class App extends Component {
 
@@ -123,11 +125,7 @@ class App extends Component {
     };
 
     handleChange = ({ name, value }) =>
-    {
-        let newQuery = this.state.searchQuery;
-        newQuery[name] = value;
-        this.setState({isLoading: true, searchQuery: newQuery})
-    };
+        this.props.syncNewQuery({ name, value });
 
     getChartData() {
         // Her vil vi implementere Ajax/Axios
@@ -169,4 +167,18 @@ class App extends Component {
     }
 }
 
-export default App;
+
+const mapState = state => ({
+    name: state.name,
+    search_query: state.search_query
+});
+
+const mapDispatch = dispatch => ({
+    syncNewQuery: query => dispatch(syncNewSearchQuery(query)),
+});
+
+export default connect(
+    mapState,
+    mapDispatch
+)(App);
+

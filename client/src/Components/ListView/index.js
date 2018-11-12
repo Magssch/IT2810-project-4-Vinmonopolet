@@ -3,6 +3,7 @@ import ListItem from './ListItem/index';
 import { Table } from 'semantic-ui-react';
 import './ListView.css';
 import _ from 'lodash';
+import { connect } from 'react-redux';
 
 class ListView extends Component {
     state = {
@@ -95,4 +96,5 @@ class ListView extends Component {
 }
 
 export default ListView;
+
 
