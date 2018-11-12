@@ -4,12 +4,14 @@ import { Table } from 'semantic-ui-react';
 import './ListView.css';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 class ListView extends Component {
     state = {
         column: null,
         data: this.props.items,
         direction: null,
+        dataURL: null,
     };
 
     handleChange = () =>
@@ -34,9 +36,18 @@ class ListView extends Component {
         })
     };
 
+    getData() {
+        axios.get('http://localhost:3000/Product?')
+            .then(
+                response => console.log(response.data.docs)
+            )
+            .catch(error => {
+                console.log('Vi suger');console.log(error); } )
+    }
+
     render() {
         const { column, data, direction } = this.state;
-
+        this.getData();
         return (
             <Table inverted sortable fixed selectable collapsing size={'large'}>
                 <Table.Header>

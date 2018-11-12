@@ -14,6 +14,13 @@ Specifying the respective keys allows for searching for specific products, for e
 Using && between keys allows for specifying several types
  */
 
+router.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
+
 router.get('/product',(req, res) => {
   let sorting = req.query.sorting ? req.query.sorting: 'Pris';
   let order = req.query.order ? req.query.order : '1';
