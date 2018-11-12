@@ -8,6 +8,7 @@ import PieChart from './Components/PieChart';
 import BarChart from './Components/BarChart';
 import DoughnutChart from './Components/DoughnutChart';
 import LineChart from './Components/LineChart';
+import axios from 'axios';
 
 class App extends Component {
 

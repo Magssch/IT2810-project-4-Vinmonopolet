@@ -1,0 +1,23 @@
+{
+  "name": "project-4",
+  "version": "1.0.0",
+  "description": "Prosjekt4 i IT2810 H18",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "cd server && npm run webserver"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.stud.idi.ntnu.no:it2810-h18/prosjekt3/gruppe46.git"
+  },
+  "author": "ViktorGSolberg, Magssch, asmundh",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "nodemon": "^1.18.4"
+  }
+}
