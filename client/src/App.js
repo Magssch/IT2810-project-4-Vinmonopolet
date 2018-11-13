@@ -32,7 +32,7 @@ class AppContent extends Component {
 
     componentWillMount(){
         this.getChartData();
-        this.fetch_items(`http://localhost:3000/Product?name=${this.props.search_query.name}
+        this.props.fetch_items(`http://localhost:3000/Product?name=${this.props.search_query.name}
                    &&volume=${this.props.search_query.volume}&&country${this.props.search_query.country}
                    &&type=${this.props.search_query.type}`);
     };
