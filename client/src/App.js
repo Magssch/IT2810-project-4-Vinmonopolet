@@ -36,7 +36,7 @@ class AppContent extends Component {
     componentWillMount(){
         this.getChartData();
         this.props.fetch_items(`http://localhost:3000/Product?name=${this.props.search_query.name}
-                   &&volume=${this.props.search_query.volume}&&country${this.props.search_query.country}
+                   &&volume=${this.props.search_query.volume}&&country=${this.props.search_query.country}
                    &&type=${this.props.search_query.type}`);
     };
 
@@ -128,6 +128,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
     syncNewQuery: query => dispatch(syncNewSearchQuery(query)),
     fetch_items: url => dispatch(fetchItems(url)),
+    update_items: url => dispatch(updateItems(url)),
 });
 
 export default connect(

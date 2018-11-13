@@ -52,6 +52,7 @@ class ListView extends Component {
             <Table inverted sortable fixed selectable collapsing size={'large'}>
                 <Table.Header>
                     <Table.Row>
+                        <Table.HeaderCell style={{width: "8%"}} />
                         <Table.HeaderCell
                             sorted={column === 'Varenavn' ? direction : null}
                             onClick={this.handleSort('Varenavn')}
