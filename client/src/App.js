@@ -44,7 +44,8 @@ class AppContent extends Component {
             ((!this.props.search_query.volume) ? '' : `&Volum=${this.props.search_query.volume.toString()}`) +
             ((!this.props.search_query.country) ? '' : `&Land=${this.props.search_query.country}`) +
             ((!this.props.search_query.type) ? '' : `&Varetype=${this.props.search_query.type}`) +
-            ((!this.props.sorting.column) ? '' : `&sorting=${this.props.sorting.column}`);
+            ((!this.props.sorting.column) ? '&sorting=Pris' : `&sorting=${this.props.sorting.column}`) +
+            ((this.props.sorting.direction === 'ascending') ? '&order=asc' : '&order=desc');
     };
 
     handleChange = ({ name, value }) => {
