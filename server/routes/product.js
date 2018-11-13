@@ -56,7 +56,9 @@ router.get('/product',(req, res) => {
   if (req.query.Volum) {
     content.Volum = {$regex: RegExp(req.query.Volum), $options:'-i'};
   }
-  
+  if (req.query.Kategori) {
+    content.Kategori = {$regex: RegExp(req.query.Kategori), $options:'-i'};
+  }
 
   ProductModel.paginate(content,{
     page: pages,

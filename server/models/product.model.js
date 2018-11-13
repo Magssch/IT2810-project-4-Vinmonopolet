@@ -30,7 +30,8 @@ let ProductSchema = new mongoose.Schema({
   Vareurl:String,
   APK:Number,
   Liker: Number,
-  Misliker: Number
+  Misliker: Number,
+  Kategori: String
   },
   { collection : 'inventory' })
 
