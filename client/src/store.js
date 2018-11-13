@@ -1,4 +1,10 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import reducer from './reduxTest.js'
+import {fetchItems} from "./reduxTest";
 
-export default createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
+
+store.dispatch(fetchItems("http://localhost:3000/Product"));
+
+export default store;

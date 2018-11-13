@@ -1,6 +1,9 @@
+import axios from "axios";
+
 const AppActionTypes = {
     SYNC_NEW_SEARCH_QUERY: 'SYNC_NEW_SEARCH_QUERY',
     UPDATE_ITEMS: 'UPDATE_ITEMS',
+    FETCH_ITEMS: 'FETCH_ITEMS'
 };
 
 export const syncNewSearchQuery = ({ name, value }) => ({
@@ -12,6 +15,17 @@ export const updateItems = result => ({
     type: AppActionTypes.UPDATE_ITEMS,
     payload: { items: result }
 });
+
+export const fetchItems = url => {
+    return (dispatch) => {
+        return axios.get(url)
+            .then(
+                dispatch(updateItems(response.data.docs))
+            )
+            .catch(error => {
+                console.log('Feil');console.log(error); } );
+    };
+};
 
 const defaultState = {
     isLoading: false,
