@@ -2,92 +2,52 @@ import React, { Component } from 'react';
 import ListItem from './ListItem/index';
 import { Table } from 'semantic-ui-react';
 import './ListView.css';
-import _ from 'lodash';
-import axios from 'axios';
+import {setSorting} from "../../reduxTest";
+import connect from "react-redux/es/connect/connect";
 
 class ListView extends Component {
-    state = {
-        column: null,
-        //data: this.props.items,
-        direction: null,
-        dataURL: null,
-    };
 
     handleChange = () =>
         this.props.onClick();
 
     handleSort = clickedColumn => () => {
-        const { column, data, direction } = this.state;
-
-        if (column !== clickedColumn) {
-            this.setState({
+        if (this.props.sorting.column !== clickedColumn) {
+            this.props.set_sorting({
                 column: clickedColumn,
-                data: _.sortBy(data, [clickedColumn]),
-                direction: 'ascending',
+                direction: 'descending',
+            }).then(()=>{
+                this.props.onSort();
             });
-
-            return
+        } else {
+            this.props.set_sorting({
+                column: this.props.sorting.column,
+                direction: this.props.sorting.direction === 'ascending' ? 'descending' : 'ascending'
+            });
         }
-
-        this.setState({
-            data: data.reverse(),
-            direction: direction === 'ascending' ? 'descending' : 'ascending',
-        })
     };
 
-    getData() {
-        axios.get('http://localhost:3000/Product?')
-            .then(
-                response => console.log(response.data.docs)
-            )
-            .catch(error => {
-                console.log('Feil');console.log(error); } )
-    }
-
     render() {
-        const { column, data, direction } = this.state;
-        //this.getData();
-        return (
+        let direction = this.props.sorting.direction, column = this.props.sorting.column;
+        let headers = [{key:'Varenavn', field:'Varenavn'}, {key:'Varetype', field:'Varetype'},
+            {key:'Volum', field:'Volum'}, {key:'Pris', field:'Pris'}, {key:'Land', field:'Land'}, {key:'Argang', field:'Årgang'}];
+
+            return (
             <Table inverted sortable fixed selectable collapsing size={'large'}>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell style={{width: "8%"}} />
-                        <Table.HeaderCell
-                            sorted={column === 'Varenavn' ? direction : null}
-                            onClick={this.handleSort('Varenavn')}
-                        >
-                            Varenavn
-                        </Table.HeaderCell>
-                        <Table.HeaderCell
-                            sorted={column === 'Varetype' ? direction : null}
-                            onClick={this.handleSort('Varetype')}
-                        >
-                            Varetype
-                        </Table.HeaderCell>
-                        <Table.HeaderCell
-                            sorted={column === 'Volum' ? direction : null}
-                            onClick={this.handleSort('Volum')}
-                        >
-                            Volum
-                        </Table.HeaderCell>
-                        <Table.HeaderCell
-                            sorted={column === 'Pris' ? direction : null}
-                            onClick={this.handleSort('Pris')}
-                        >
-                            Pris
-                        </Table.HeaderCell>
-                        <Table.HeaderCell
-                            sorted={column === 'Land' ? direction : null}
-                            onClick={this.handleSort('Land')}
-                        >
-                            Land
-                        </Table.HeaderCell>
-                        <Table.HeaderCell
-                            sorted={column === 'Argang' ? direction : null}
-                            onClick={this.handleSort('Argang')}
-                        >
-                            Årgang
-                        </Table.HeaderCell>
+                        {
+                            headers.map(
+                                (header, i) =>
+                                    (<Table.HeaderCell
+                                        key={i}
+                                        sorted={column === header.key ? direction : null}
+                                        onClick={this.handleSort(header.key)}
+                                    >
+                                        {header.field}
+                                    </Table.HeaderCell>)
+                            )
+                        }
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -110,6 +70,19 @@ class ListView extends Component {
     }
 }
 
-export default ListView;
+const mapState = state => ({
+    sorting: state.sorting
+});
+
+const mapDispatch = dispatch => ({
+    set_sorting: sorting => dispatch(setSorting(sorting)),
+});
+
+export default connect(
+    mapState,
+    mapDispatch
+)(ListView);
+
+
 
 
