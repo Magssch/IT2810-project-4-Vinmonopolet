@@ -42,12 +42,12 @@ class ListView extends Component {
                 response => console.log(response.data.docs)
             )
             .catch(error => {
-                console.log('Vi suger');console.log(error); } )
+                console.log('Feil');console.log(error); } )
     }
 
     render() {
         const { column, data, direction } = this.state;
-        this.getData();
+        //this.getData();
         return (
             <Table inverted sortable fixed selectable collapsing size={'large'}>
                 <Table.Header>

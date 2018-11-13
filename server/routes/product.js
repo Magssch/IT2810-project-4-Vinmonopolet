@@ -53,6 +53,6 @@ router.get('/product',(req, res) => {
     .catch(err => {
       res.status(500).json(err)
     })
-})
+});
 
 export default router;

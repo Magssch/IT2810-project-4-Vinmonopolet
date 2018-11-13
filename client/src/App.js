@@ -22,7 +22,8 @@ class AppContent extends Component {
 
     // TODO skal erstattes med Redux
     state = {
-            chartData: {},
+        chartData: {},
+        open: false,
     };
 
     volumeOptions = [{key: 0.33, value: 0.33, text: '0.33 l'}, {key: 0.5, value: 0.5, text: '0.5 l'}];
@@ -44,6 +45,16 @@ class AppContent extends Component {
         this.setState({ open: false });
     };
 
+    getData() {
+        axios.get('http://localhost:3000/Product?')
+            .then(
+                response => console.log(response.data.docs)
+            )
+            .catch(error => {
+                console.log('Feil');console.log(error); } )
+    };
+
+
     getChartData() {
         // Her vil vi implementere Ajax/Axios eller hva faen.
         this.setState({
@@ -61,6 +72,7 @@ class AppContent extends Component {
     render() {
 
         const { open } = this.state;
+        this.getData();
 
         return (
             <div className="App">
