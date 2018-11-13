@@ -127,7 +127,7 @@ export default function reducer(state, action) {
             return {
                 ...state,
                 items: action.result,
-                isLoading: !state.isLoading
+                isLoading: false
             };
 
         default:

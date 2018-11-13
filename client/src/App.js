@@ -49,7 +49,9 @@ class AppContent extends Component {
     };
 
     getData() {
-        axios.get('http://localhost:3000/Product?')
+        axios.get(`http://localhost:3000/Product?name=${this.props.search_query.name}
+                   &&volume=${this.props.search_query.volume}&&country${this.props.search_query.country}
+                   &&type=${this.props.search_query.type}`)
             .then(
                 response => {console.log(response.data.docs);this.props.update_items(response.data.docs)}
             )
