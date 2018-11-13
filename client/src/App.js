@@ -26,9 +26,12 @@ class AppContent extends Component {
         open: false,
     };
 
-    volumeOptions = [{key: 0.33, value: 0.33, text: '0.33 l'}, {key: 0.5, value: 0.5, text: '0.5 l'}];
-    countryOptions = [{key: "no", value: "no", text: 'Norge'}, {key: "fr", value: "fr", text: "Frankrike"}];
-    typeOptions = [{key: "wi", value: "wi", text: 'Vin'}, {key: "be", value: "be", text: "Øl"}];
+    //volumeOptions = [{key: 0.33, value: 0.33, text: '0.33 l'}, {key: 0.5, value: 0.5, text: '0.5 l'}];
+    //countryOptions = [{key: "no", value: "no", text: 'Norge'}, {key: "fr", value: "fr", text: "Frankrike"}];
+    //typeOptions = [{key: "wi", value: "wi", text: 'Vin'}, {key: "be", value: "be", text: "Øl"}];
+    volumeOptions = [0.33, 0.5];
+    countryOptions = ['Norge', "Frankrike"];
+    typeOptions = ['Vin', 'Øl'];
 
     componentWillMount(){
         this.getChartData();
@@ -124,7 +127,6 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
     syncNewQuery: query => dispatch(syncNewSearchQuery(query)),
-    update_items: result => dispatch(updateItems(result)),
     fetch_items: url => dispatch(fetchItems(url)),
 });
 
