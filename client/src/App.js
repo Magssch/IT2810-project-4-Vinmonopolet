@@ -34,6 +34,17 @@ class AppContent extends Component {
         this.getChartData();
     };
 
+    getUniqueData(column) {
+        let emptyList = [];
+        if (column === "Land") {
+            axios.get('http://localhost:3000/Product?'+column)
+                .then(
+                    response => {response.data.docs.map(e => emptyList.push(e.Land));console.log(emptyList);}
+                )
+                .catch(error => {
+                    console.log('Feil');console.log(error); } )
+        }
+    }
     handleChange = ({ name, value }) =>
         this.props.syncNewQuery({ name, value });
 
@@ -80,7 +91,7 @@ class AppContent extends Component {
     render() {
 
         const { open } = this.state;
-        this.getData();
+        this.getUniqueData("Land");
 
         return (
             <div className="App">
