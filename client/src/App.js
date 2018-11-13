@@ -42,7 +42,7 @@ class AppContent extends Component {
         // gjør axios-fetch
         let result = {};
         this.props.update_items(result);
-    }
+    };
 
     onOpenModal = () => {
         this.setState({ open: true });
