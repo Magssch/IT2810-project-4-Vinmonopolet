@@ -26,6 +26,8 @@ class AppContent extends Component {
         open: false,
     };
 
+
+
     volumeOptions = [{key: 0.33, value: 0.33, text: '0.33 l'}, {key: 0.5, value: 0.5, text: '0.5 l'}];
     countryOptions = [{key: "no", value: "no", text: 'Norge'}, {key: "fr", value: "fr", text: "Frankrike"}];
     typeOptions = [{key: "wi", value: "wi", text: 'Vin'}, {key: "be", value: "be", text: "Øl"}];
@@ -34,6 +36,20 @@ class AppContent extends Component {
         this.getChartData();
     };
 
+    getUniqueData(column) {
+        let emptyList = [];
+        if (column === "Varetype") {
+            axios.get('http://localhost:3000/Product?'+column)
+                .then(
+                    response => {response.data.docs.map(e => emptyList.push(e.Varetype));
+                                    console.log(emptyList);
+                                    let unique = [... new Set(emptyList)];
+                                    console.log(unique.sort());}
+                )
+                .catch(error => {
+                    console.log('Feil');console.log(error); } )
+        }
+    }
     handleChange = ({ name, value }) =>
         this.props.syncNewQuery({ name, value });
 
@@ -80,7 +96,7 @@ class AppContent extends Component {
     render() {
 
         const { open } = this.state;
-        this.getData();
+        //this.getUniqueData("Varetype");
 
         return (
             <div className="App">
