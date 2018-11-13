@@ -26,7 +26,7 @@ router.get('/product',(req, res) => {
   let order = req.query.order ? req.query.order : '1';
   let page = req.query.page ? req.query.page : 1;
   let pages=parseInt(page);
-  let limit = req.query.limit ? req.query.limit : 10;
+  let limit = req.query.limit ? req.query.limit : 18000;
   let lim=parseInt(limit);
 
   let content = {};
