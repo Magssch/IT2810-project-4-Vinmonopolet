@@ -14,6 +14,7 @@ class ListItem extends Component {
 
     getIconType = () => {
         if(this.props.type.toLowerCase().includes("vin")) return "wine";
+        if(this.props.type.toLowerCase().includes("cha")) return "wine";
         else if(this.props.type.toLowerCase().includes("øl")) return "beer";
         else if(this.props.type.toLowerCase().includes("ale")) return "beer";
         else return "liquor";

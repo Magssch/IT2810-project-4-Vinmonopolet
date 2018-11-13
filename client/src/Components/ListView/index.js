@@ -3,7 +3,6 @@ import ListItem from './ListItem/index';
 import { Table } from 'semantic-ui-react';
 import './ListView.css';
 import _ from 'lodash';
-import { connect } from 'react-redux';
 import axios from 'axios';
 
 class ListView extends Component {

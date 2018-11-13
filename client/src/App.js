@@ -40,10 +40,10 @@ class AppContent extends Component {
 
     generateQuery = () => {
         return "http://localhost:3000/Product?" +
-            ((this.props.search_query.name === null) ? '' : `&Varenavn=${this.props.search_query.name}`) +
-            ((this.props.search_query.volume === null) ? '' : `&Volum=${this.props.search_query.volume}`) +
-            ((this.props.search_query.country === null) ? '' : `&Land=${this.props.search_query.country}`) +
-            ((this.props.search_query.type === null) ? '' : `&Type=${this.props.search_query.type}`);
+            ((!this.props.search_query.name) ? '' : `&Varenavn=${this.props.search_query.name}`) +
+            ((!this.props.search_query.volume) ? '' : `&Volum=${this.props.search_query.volume}`) +
+            ((!this.props.search_query.country) ? '' : `&Land=${this.props.search_query.country}`) +
+            ((!this.props.search_query.type) ? '' : `&Type=${this.props.search_query.type}`);
     };
 
     handleChange = ({ name, value }) => {
@@ -121,6 +121,7 @@ class AppContent extends Component {
                 <p>{this.props.search_query.country}</p>
                 <p>{this.props.search_query.volume}</p>
                 <ListView items={this.props.items} onClick={() => this.onOpenModal}/>
+                <br/><br/>
             </div>
         );
     }
