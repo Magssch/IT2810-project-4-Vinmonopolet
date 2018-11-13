@@ -42,7 +42,22 @@ app.use((err,req,res,next) => {
   console.error(err.stack)
   res.sendFile(path.join(__dirname,'../public/500.html'))
 })
+var PORTS = [4000,8000,12000,15000] // || process.env.PORT;
+var PORT = 12000;
 
-const PORT = 3000 // || process.env.PORT;
+function setPort() {
+  PORT = PORTS[Math.floor(Math.random()*PORTS.length)];
+}
 
+function startServer() {
+  try {
+    app.listen(PORT, () => console.info(`Server has started on ${PORT}`));
+  } catch(err) {
+    setPort();
+    startServer();
+  }
+}
+// startServer();
 app.listen(PORT, () => console.info(`Server has started on ${PORT}`));
+
+//here
