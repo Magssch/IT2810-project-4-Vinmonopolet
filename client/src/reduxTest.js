@@ -2,8 +2,7 @@ import axios from "axios";
 
 const AppActionTypes = {
     SYNC_NEW_SEARCH_QUERY: 'SYNC_NEW_SEARCH_QUERY',
-    UPDATE_ITEMS: 'UPDATE_ITEMS',
-    FETCH_ITEMS: 'FETCH_ITEMS'
+    UPDATE_ITEMS: 'UPDATE_ITEMS'
 };
 
 export const syncNewSearchQuery = ({ name, value }) => ({
@@ -141,7 +140,7 @@ export default function reducer(state, action) {
         case AppActionTypes.UPDATE_ITEMS:
             return {
                 ...state,
-                items: action.payload,
+                items: action.payload.items,
                 isLoading: false
             };
 
