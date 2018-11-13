@@ -9,7 +9,7 @@ import axios from 'axios';
 class ListView extends Component {
     state = {
         column: null,
-        data: this.props.items,
+        //data: this.props.items,
         direction: null,
         dataURL: null,
     };
@@ -93,7 +93,7 @@ class ListView extends Component {
                 </Table.Header>
                 <Table.Body>
                     {
-                        data.map(
+                        this.props.items.map(
                             item => <ListItem
                                         key={item.Varenummer}
                                         name={item.Varenavn}

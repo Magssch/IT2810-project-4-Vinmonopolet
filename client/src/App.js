@@ -35,13 +35,20 @@ class AppContent extends Component {
 
     componentWillMount(){
         this.getChartData();
-        this.props.fetch_items(`http://localhost:3000/Product?name=${this.props.search_query.name}
-                   &&volume=${this.props.search_query.volume}&&country=${this.props.search_query.country}
-                   &&type=${this.props.search_query.type}`);
+        this.props.fetch_items(this.generateQuery());
+    };
+
+    generateQuery = () => {
+        return "http://localhost:3000/Product?" +
+            ((this.props.search_query.name === null) ? '' : `&Varenavn=${this.props.search_query.name}`) +
+            ((this.props.search_query.volume === null) ? '' : `&Volum=${this.props.search_query.volume}`) +
+            ((this.props.search_query.country === null) ? '' : `&Land=${this.props.search_query.country}`) +
+            ((this.props.search_query.type === null) ? '' : `&Type=${this.props.search_query.type}`);
     };
 
     handleChange = ({ name, value }) => {
         this.props.syncNewQuery({name, value});
+        this.props.fetch_items(this.generateQuery());
         //this.getData();
     };
 

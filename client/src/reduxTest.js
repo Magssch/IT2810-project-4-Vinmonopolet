@@ -19,7 +19,7 @@ export const fetchItems = url => {
     return (dispatch) => {
         return axios.get(url)
             .then(
-                response => dispatch(updateItems(response.data.docs))
+                response => {dispatch(updateItems(response.data.docs));console.log("dispatching")}
             )
             .catch(error => {
                 console.log('Feil');console.log(error); } );
@@ -28,7 +28,7 @@ export const fetchItems = url => {
 
 const defaultState = {
     isLoading: false,
-    items: [{
+    items: [/*{
         "_id": "5bdd8a695402002b2ef1b0e7",
         "Varenummer": 6505103,
         "Varenavn": "Wodqa",
@@ -114,7 +114,7 @@ const defaultState = {
             "Produsent": "Fossa Mala",
             "Vareurl": "http://www.vinmonopolet.no/vareutvalg/varedetaljer/sku-10148302",
             "APK": 0.055
-        },],
+        },*/],
     search_query: {
         name: null,
         volume: null,
@@ -138,6 +138,7 @@ export default function reducer(state, action) {
             };
 
         case AppActionTypes.UPDATE_ITEMS:
+            console.log(action.payload.items);
             return {
                 ...state,
                 items: action.payload.items,
