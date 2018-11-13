@@ -32,17 +32,12 @@ class AppContent extends Component {
 
     componentWillMount(){
         this.getChartData();
+        this.getData();
     };
 
-    handleChange = ({ name, value }) =>
-        this.props.syncNewQuery({ name, value });
-
-    // TODO implementer axios
-    fetchItems = () => {
-
-        // gjør axios-fetch
-        let result = {};
-        this.props.update_items(result);
+    handleChange = ({ name, value }) => {
+        this.props.syncNewQuery({name, value});
+        this.getData();
     };
 
     onOpenModal = () => {
@@ -56,7 +51,7 @@ class AppContent extends Component {
     getData() {
         axios.get('http://localhost:3000/Product?')
             .then(
-                response => console.log(response.data.docs)
+                response => {console.log(response.data.docs);this.props.update_items(response.data.docs)}
             )
             .catch(error => {
                 console.log('Feil');console.log(error); } )
@@ -80,7 +75,6 @@ class AppContent extends Component {
     render() {
 
         const { open } = this.state;
-        this.getData();
 
         return (
             <div className="App">
