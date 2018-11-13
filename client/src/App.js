@@ -11,7 +11,7 @@ import DoughnutChart from './Components/DoughnutChart';
 import LineChart from './Components/LineChart';
 import axios from 'axios';
 import Modal from "react-responsive-modal";
-import {syncNewSearchQuery, updateItems} from './reduxTest';
+import {fetchItems, syncNewSearchQuery, updateItems} from './reduxTest';
 
 class AppContent extends Component {
 
