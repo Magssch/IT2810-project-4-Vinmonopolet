@@ -14,6 +14,7 @@ Specifying the respective keys allows for searching for specific products, for e
 Using && between keys allows for specifying several types
  */
 
+<<<<<<< HEAD
   // Allow client to fetch data
   router.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*'); // Can change * to allow request from specific clients
@@ -23,6 +24,15 @@ Using && between keys allows for specifying several types
 
 
 
+=======
+router.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
+
+>>>>>>> #19axios_og_redux
 router.get('/product',(req, res) => {
   let sorting = req.query.sorting ? req.query.sorting: 'Pris';
   let order = req.query.order ? req.query.order : '1';
@@ -68,6 +78,6 @@ router.get('/product',(req, res) => {
     .catch(err => {
       res.status(500).json(err);
     })
-})
+});
 
 export default router;

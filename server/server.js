@@ -9,14 +9,15 @@ import dotenv from 'dotenv';
 const app = express();
 dotenv.load({path: '.env'});
 
-app.use(bodyParser.json())
-app.use(productRoute)
-app.use(customerRoute)
+app.use(bodyParser.json());
+app.use(productRoute);
+app.use(customerRoute);
 
 app.use((req,res,next) => { 
-  console.log(`${new Date().toString()} => ${req.originalUrl}`,req.body)
+  console.log(`${new Date().toString()} => ${req.originalUrl}`,req.body);
   next()
-})
+});
+
 
 
 //lokalt:
@@ -26,6 +27,12 @@ const server=process.env.MONGODB_IDI_URI;
 //mongoose.connect(`mongodb://${user}:${password}@${server}/${database}`)
 mongoose.connect(server, { useNewUrlParser: true } )
 
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 app.use(customerRoute)
 app.use(productRoute)

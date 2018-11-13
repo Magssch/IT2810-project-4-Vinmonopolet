@@ -1,6 +1,19 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "webserver": "nodemon --exec babel-node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.stud.idi.ntnu.no:it2810-h18/prosjekt3/gruppe46.git"
+  },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/polyfill": "^7.0.0",
@@ -18,18 +31,5 @@
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "nodemon": "^1.18.4"
-  },
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "webserver": "nodemon server.js --exec babel-node",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git@gitlab.stud.idi.ntnu.no:it2810-h18/prosjekt3/gruppe46.git"
   }
 }
