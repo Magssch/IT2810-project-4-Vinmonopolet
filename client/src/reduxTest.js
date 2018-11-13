@@ -9,7 +9,8 @@ export const syncNewSearchQuery = ({ name, value }) => ({
 });
 
 export const updateItems = result => ({
-    type: AppActionTypes.UPDATE_ITEMS
+    type: AppActionTypes.UPDATE_ITEMS,
+    payload: { items: result }
 });
 
 const defaultState = {
@@ -126,7 +127,7 @@ export default function reducer(state, action) {
         case AppActionTypes.UPDATE_ITEMS:
             return {
                 ...state,
-                items: action.result,
+                items: action.payload,
                 isLoading: false
             };
 
