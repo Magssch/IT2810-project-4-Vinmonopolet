@@ -20,7 +20,7 @@ export const fetchItems = url => {
     return (dispatch) => {
         return axios.get(url)
             .then(
-                dispatch(updateItems(response.data.docs))
+                response => dispatch(updateItems(response.data.docs))
             )
             .catch(error => {
                 console.log('Feil');console.log(error); } );
