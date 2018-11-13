@@ -1,10 +1,15 @@
 const AppActionTypes = {
     SYNC_NEW_SEARCH_QUERY: 'SYNC_NEW_SEARCH_QUERY',
+    UPDATE_ITEMS: 'UPDATE_ITEMS',
 };
 
 export const syncNewSearchQuery = ({ name, value }) => ({
     type: AppActionTypes.SYNC_NEW_SEARCH_QUERY,
     payload: { value: value, name: name}
+});
+
+export const updateItems = result => ({
+    type: AppActionTypes.UPDATE_ITEMS
 });
 
 const defaultState = {
@@ -114,7 +119,15 @@ export default function reducer(state, action) {
                 search_query: {
                     ...state.search_query,
                     [action.payload.name]: action.payload.value
-                }
+                },
+                isLoading: true
+            };
+
+        case AppActionTypes.UPDATE_ITEMS:
+            return {
+                ...state,
+                items: action.result,
+                isLoading: !state.isLoading
             };
 
         default:
