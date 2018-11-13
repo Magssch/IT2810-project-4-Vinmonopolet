@@ -9,7 +9,6 @@ class ListItem extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-
     handleChange = () =>
         this.props.onClick();
 
