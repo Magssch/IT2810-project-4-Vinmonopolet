@@ -10,9 +10,15 @@ class Query extends Component {
     handleChange = (e, { name, value }) =>
         this.props.onChange({name, value});
 
+    parseOptions = () => {
+        let optionArray = [];
+        this.props.options.map(option => optionArray.push({key: option, value: option, text: option}));
+        return optionArray;
+    };
+
     render() {
         return (
-            <Form.Dropdown placeholder={this.props.placeholder} fluid search selection name={this.props.name} options={this.props.options} onChange={this.handleChange}  />
+            <Form.Dropdown placeholder={this.props.placeholder} fluid search selection name={this.props.name} options={this.parseOptions()} onChange={this.handleChange}  />
         );
     }
 }

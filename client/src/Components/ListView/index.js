@@ -3,13 +3,18 @@ import ListItem from './ListItem/index';
 import { Table } from 'semantic-ui-react';
 import './ListView.css';
 import _ from 'lodash';
+import axios from 'axios';
 
 class ListView extends Component {
     state = {
         column: null,
-        data: this.props.items,
+        //data: this.props.items,
         direction: null,
+        dataURL: null,
     };
+
+    handleChange = () =>
+        this.props.onClick();
 
     handleSort = clickedColumn => () => {
         const { column, data, direction } = this.state;
@@ -30,13 +35,23 @@ class ListView extends Component {
         })
     };
 
+    getData() {
+        axios.get('http://localhost:3000/Product?')
+            .then(
+                response => console.log(response.data.docs)
+            )
+            .catch(error => {
+                console.log('Feil');console.log(error); } )
+    }
+
     render() {
         const { column, data, direction } = this.state;
-
+        //this.getData();
         return (
             <Table inverted sortable fixed selectable collapsing size={'large'}>
                 <Table.Header>
                     <Table.Row>
+                        <Table.HeaderCell style={{width: "8%"}} />
                         <Table.HeaderCell
                             sorted={column === 'Varenavn' ? direction : null}
                             onClick={this.handleSort('Varenavn')}
@@ -77,7 +92,7 @@ class ListView extends Component {
                 </Table.Header>
                 <Table.Body>
                     {
-                        data.map(
+                        this.props.items.map(
                             item => <ListItem
                                         key={item.Varenummer}
                                         name={item.Varenavn}
@@ -86,6 +101,7 @@ class ListView extends Component {
                                         price={item.Pris}
                                         country={item.Land}
                                         year={item.Argang}
+                                        onClick={this.handleChange}
                                     />)
                     }
                 </Table.Body>
@@ -95,4 +111,5 @@ class ListView extends Component {
 }
 
 export default ListView;
+
 

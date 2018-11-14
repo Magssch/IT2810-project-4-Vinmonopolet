@@ -101,11 +101,18 @@ client/.idea/gruppe46.iml
 client/node_modules/
 client/node_modules/.bin/
 
+server/node_modules/
+server/node_modules/.bin/
+
 node_modules/
 /node_modules
+*/node_modules
 
 # testing
 client/coverage
 
 # production
 client/build
+server/package-lock.json
+server/node_modules/.cache/@babel/register/.babel.7.1.5.development.json
+server/node_modules/.cache/@babel/register/.babel.7.1.5.development.json

@@ -21,8 +21,6 @@ Using && between keys allows for specifying several types
     next();
 });
 
-
-
 router.get('/product',(req, res) => {
   let sorting = req.query.sorting ? req.query.sorting: 'Pris';
   let order = req.query.order ? req.query.order : '1';
@@ -70,6 +68,6 @@ router.get('/product',(req, res) => {
     .catch(err => {
       res.status(500).json(err);
     })
-})
+});
 
 export default router;
