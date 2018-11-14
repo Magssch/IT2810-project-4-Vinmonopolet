@@ -23,7 +23,9 @@ class ListItem extends Component {
     render() {
         return (
                 <Table.Row onClick={this.handleChange()} style={{cursor: "pointer"}}>
-                    <Table.Cell><img className="item-icon" src={`../resources/${this.getIconType()}icon.png`} alt={"Icon"}/></Table.Cell>
+                    <Table.Cell textAlign={"center"}>
+                        <img className="item-icon" src={`../resources/${this.getIconType()}icon.png`} alt={"Icon"}/>
+                    </Table.Cell>
                     <Table.Cell>{this.props.name}</Table.Cell>
                     <Table.Cell>{this.props.type}</Table.Cell>
                     <Table.Cell>{this.props.alcohol}</Table.Cell>

@@ -52,7 +52,7 @@ router.get('/product',(req, res) => {
     content.Argang = {$regex: RegExp(req.query.Argang), $options:'-i'};
   }
   if (req.query.Volum) {
-    content.Volum = {$regex: RegExp(req.query.Volum), $options:'-i'};
+    content.Volum = req.query.Volum;
   }
   
 

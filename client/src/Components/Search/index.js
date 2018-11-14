@@ -12,7 +12,9 @@ class Search extends Component {
 
     render() {
         return (
-            <Form.Input icon={this.props.isLoading ? '' : 'search'}  loading={this.props.isLoading} name={"name"} placeholder='Søk...' style={{width: "100%"}} onChange={this.handleChange} />
+            <Form.Input icon={this.props.isLoading ? '' : 'search'}  loading={this.props.isLoading}
+                        name={"name"} placeholder='Søk...' style={{width: "100%"}}
+                        onChange={this.handleChange} />
         );
     }
 }
