@@ -35,7 +35,7 @@ class ListView extends Component {
 
     // Handler that is run upon clicking an item / table entry. Toggles advanced view
     toggleModal = (index) =>
-        this.props.toggle_modal(index ? index : 0);
+        this.props.toggle_modal(index ? index : this.props.index);
 
     // Renders modal component. Checks if items are loaded before loading.
     renderModal() {
