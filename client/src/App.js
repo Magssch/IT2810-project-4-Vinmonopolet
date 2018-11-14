@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-import ListView from './Components/ListView';
-import Search from './Components/Search';
-import Query from './Components/Query';
+import ListView from './components/ListView';
+import Search from './components/Search';
+import Query from './components/Query';
 import { Form, Loader } from 'semantic-ui-react';
-import {fetchItems, syncSearchQuery, loadMoreItems} from './reduxTest';
+import {fetchItems, syncSearchQuery, loadMoreItems} from './actions';
 
 const json = require('./uniqueData.json');
+
+const volumeOptions = json.volum, countryOptions = json.land, typeOptions = json.type;
 
 class AppContent extends Component {
 
@@ -17,10 +19,6 @@ class AppContent extends Component {
         this.handleSort = this.handleSort.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
     }
-
-    volumeOptions = json.volum;
-    countryOptions = json.land;
-    typeOptions = json.type;
 
     componentWillMount(){
         this.props.fetch_items(this.generateQuery());
@@ -79,11 +77,11 @@ class AppContent extends Component {
                 <Form style={{width: "80%"}}>
                     <Form.Group>
                         <Search isLoading={this.props.isLoading} onChange={this.handleChange}/>
-                        <Query name="volume" placeholder="Volum" options={this.volumeOptions}
+                        <Query name="volume" placeholder="Volum" options={volumeOptions}
                                onChange={this.handleChange} style={{width: "80px"}}/>
-                        <Query name="country" placeholder="Land" options={this.countryOptions}
+                        <Query name="country" placeholder="Land" options={countryOptions}
                                onChange={this.handleChange} style={{width: "150px"}}/>
-                        <Query name="type" placeholder="Type" options={this.typeOptions}
+                        <Query name="type" placeholder="Type" options={typeOptions}
                                onChange={this.handleChange} style={{width: "150px"}}/>
                     </Form.Group>
                 </Form>

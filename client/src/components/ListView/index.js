@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ListItem from './ListItem/index';
 import { Table } from 'semantic-ui-react';
 import './ListView.css';
-import {setSorting, setField, toggleModal} from "../../reduxTest";
+import {setSorting, setField, toggleModal} from "../../actions";
 import connect from "react-redux/es/connect/connect";
 import ModalChart from "../ModalChart";
 
