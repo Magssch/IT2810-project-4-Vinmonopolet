@@ -26,6 +26,8 @@ class ListItem extends Component {
         if(this.props.type.toLowerCase().includes("cha")) return "wine";
         else if(this.props.type.toLowerCase().includes("øl")) return "beer";
         else if(this.props.type.toLowerCase().includes("ale")) return "beer";
+        else if(this.props.type.toLowerCase().includes("lager")) return "beer";
+        else if(this.props.type.toLowerCase().includes("saison")) return "beer";
         else return "liquor";
     };
 
@@ -41,7 +43,11 @@ class ListItem extends Component {
                     <Table.Cell onClick={() => this.handleChange()} >{this.props.volume}</Table.Cell>
                     <Table.Cell onClick={() => this.handleChange()} >{this.props.price}</Table.Cell>
                     <Table.Cell onClick={() => this.handleChange()} >{this.props.country}</Table.Cell>
-                    <Table.Cell onClick={() => this.handleChange()}>{Math.round(this.props.apk*1000)/1000}</Table.Cell>
+                    <Table.Cell onClick={() => this.handleChange()}>
+                        <b style={this.props.apk < 0.02 ? {color: "#ce3a1c"} :
+                            (this.props.apk >= 0.06 ? {color: "#0f8911"} : {color: "white"})}>
+                        {Math.round(this.props.apk*1000)/1000}</b>
+                    </Table.Cell>
                     <Table.Cell textAlign={'center'}>
                         <div style={{overflow: "hidden"}}>
                             <Icon name={"thumbs down outline"} onClick={() => this.handleRating(false)}/>
