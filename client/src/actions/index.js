@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// Constants for action-types
 export const AppActionTypes = {
     SYNC_NEW_SEARCH_QUERY: 'SYNC_NEW_SEARCH_QUERY',
     UPDATE_ITEMS: 'UPDATE_ITEMS',
@@ -9,6 +10,7 @@ export const AppActionTypes = {
     TOGGLE_MODAL: 'TOGGLE_MODAL'
 };
 
+// Synchronize store with new search-query
 export const syncSearchQuery = ({ name, value }) =>
     dispatch=>{
         dispatch({
@@ -18,11 +20,13 @@ export const syncSearchQuery = ({ name, value }) =>
         return Promise.resolve();
     };
 
+// update the values of items in state
 export const updateItems = result => ({
     type: AppActionTypes.UPDATE_ITEMS,
     payload: { items: result }
 });
 
+// Signal for app to allow loading more items.
 export const loadMoreItems = () => dispatch => {
     dispatch({
         type: AppActionTypes.LOAD_MORE_ITEMS
@@ -30,6 +34,7 @@ export const loadMoreItems = () => dispatch => {
     return Promise.resolve();
 };
 
+// Update sorting based on new query
 export const setSorting = sorting => dispatch => {
     dispatch({
         type: AppActionTypes.SET_SORTING,
@@ -38,22 +43,25 @@ export const setSorting = sorting => dispatch => {
     return Promise.resolve();
 };
 
+// Set a specific field of an entry in items
 export const setField = (index, field, val) => ({
     type: AppActionTypes.SET_FIELD,
     payload: { index: index, field: field, val: val }
 });
 
+// Toggle display of Modal-component
 export const toggleModal = (index) => ({
     type: AppActionTypes.TOGGLE_MODAL,
     payload: { index: index }
 });
 
+// Fetch items (with axios) from database and dispatch to updateItems.
 export const fetchItems = url => {
-    console.log(url);
+    console.log(url); // TODO REMOVE DEBUG
     return (dispatch) => {
         return axios.get(url)
             .then(
-                response => {dispatch(updateItems(response.data.docs));console.log("dispatching")}
+                response => {dispatch(updateItems(response.data.docs));console.log("dispatching")} // TODO REMOVE DEBUG
             )
             .catch(error => {
                 console.log('Feil');console.log(error); } );

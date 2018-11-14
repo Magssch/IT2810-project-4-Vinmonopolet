@@ -1,5 +1,6 @@
 import {AppActionTypes} from '../actions';
 
+// Initial app-state
 const defaultState = {
     isLoading: false,
     repeatQueries: 0,
@@ -41,9 +42,11 @@ export default function rootReducer(state, action) {
         case AppActionTypes.UPDATE_ITEMS:
             /*console.log(action.payload.items);
             console.log("statelen:"+state.items.length);
-            console.log("actionlen:"+action.payload.items.length);*/
+            console.log("actionlen:"+action.payload.items.length);*/ // TODO REMOVE DEBUG
 
             let repeatQueries = state.repeatQueries;
+
+            // Avoid unnecessary redraws and fetches by recording amount of cases where old state = new state
             if(state.items.length === action.payload.items.length && !state.newQuery) {
                 repeatQueries++;
             }
