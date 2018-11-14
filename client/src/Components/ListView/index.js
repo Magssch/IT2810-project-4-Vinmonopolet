@@ -38,7 +38,7 @@ class ListView extends Component {
             <Table inverted sortable fixed selectable size={'large'}>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell style={{width: "8%"}} />
+                        <Table.HeaderCell style={{width: "7%"}} />
                         {
                             headers.map(
                                 (header, i) =>
