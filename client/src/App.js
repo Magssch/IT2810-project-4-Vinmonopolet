@@ -5,12 +5,6 @@ import ListView from './Components/ListView';
 import Search from './Components/Search';
 import Query from './Components/Query';
 import { Form, Loader } from 'semantic-ui-react';
-import PieChart from './Components/PieChart';
-import BarChart from './Components/BarChart';
-import DoughnutChart from './Components/DoughnutChart';
-import LineChart from './Components/LineChart';
-import Modal from "react-responsive-modal";
-import ModalChart from "./Components/ModalChart"
 import {fetchItems, syncSearchQuery, loadMoreItems} from './reduxTest';
 
 const json = require('./uniqueData.json');
@@ -23,12 +17,6 @@ class AppContent extends Component {
         this.handleSort = this.handleSort.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
     }
-
-    // TODO skal erstattes med Redux
-    state = {
-        chartData: {},
-        open: false,
-    };
 
     volumeOptions = json.volum;
     countryOptions = json.land;
@@ -75,6 +63,7 @@ class AppContent extends Component {
             window.innerHeight + document.documentElement.scrollTop+200
             >= document.documentElement.scrollHeight
             && !(this.props.repeatQueries > 2)
+            && !this.props.isLoading
         ) {
             this.props.load_more_items().then(()=>{
                 this.props.fetch_items(this.generateQuery())
@@ -82,31 +71,7 @@ class AppContent extends Component {
         }
     };
 
-    onOpenModal = () => {
-        this.setState({ open: true });
-    };
-
-    onCloseModal = () => {
-        this.setState({ open: false });
-    };
-
-    getChartData() {
-        // Her vil vi implementere Ajax/Axios eller hva faen.
-        this.setState({
-            chartData: {
-                labels: ['beers', 'wine', 'liquor'],
-                datasets:[{
-                    label: 'number of units',
-                    data: [10 , 20, 30, 0],
-                    backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 245, 0.6)', 'rgba(255, 206, 86, 0.6)'],
-                }],
-            }
-        });
-    }
-
     render() {
-
-        const { open } = this.state;
 
         return (
             <div className="App">
@@ -122,32 +87,9 @@ class AppContent extends Component {
                                onChange={this.handleChange} style={{width: "150px"}}/>
                     </Form.Group>
                 </Form>
-                <ModalChart
-                    // Sender inn en verdi for å si om modalen skal vises eller lukkes
-                    open={open}
-                    // Funksjon som kjører hver gang modalen lukkes via "esc" eller museklikk
-                    onClose={this.onCloseModal.bind(this)}
-                    // Bestemmer om innholdet i modalen skal være sentrert
-                    // Overskriften til modalen, vi sender inn varenavn her
-                    topText={"Om " + "varenavn her"}
-                    // Diverse info/statistikk om varen
-                    likes={10}                                          // Heltall
-                    dislikes={2}                                        // Heltall
-                    argang={6969}                                       // Heltall
-                    volumPrice={169.69}                                 // Desimaltall
-                    friskhet={6}                                        // Heltall
-                    bitterhet={2}                                       // Heltall
-                    sodme={1}                                           // Heltall
-                    lukt={"god"}                                        // Streng
-                    smak={"fantastisk"}                                 // Streng
-                    passerTil={"kjøtt"}                                 // Streng
-                    showCloseIcon={false}
-                    center={true}
-                >
-                </ModalChart>
                 <div>
-                    <ListView items={this.props.items} onSort={this.handleSort}
-                              onClick={() => this.onOpenModal}/>
+                    <ListView items={this.props.items} onSort={this.handleSort}/>
+                    <br/>
                     <Loader active={this.props.isLoading} inline='centered' />
                 </div>
                 <br/>

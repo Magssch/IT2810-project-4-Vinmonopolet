@@ -13,7 +13,7 @@ class ModalChart extends Component {
 
     getFeedback(likes, dislikes) {
        return {
-            labels: ['Likes', 'Dislikes'],
+            labels: ['Liker', 'Misliker'],
             datasets: [{
                 label: 'Fjern data',
                 data: [likes, dislikes, 0],
@@ -40,35 +40,48 @@ class ModalChart extends Component {
             <div>
                 <Modal
                     open={this.props.open}
-                    onClose={this.props.onClose}
+                    onClose={() => this.props.onClose()}
+                    blockScroll={false}
                     showCloseIcon={false}
                     center={this.props.center}
+                    styles={{modal:{overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center"}}}
+                    animationDuration={200}
                 >
-                    <h2>{this.props.topText}</h2>
-                    <div style={{display:"grid", gridTemplateColumns: "200px 200px", gridRow: "auto auto", gridColumnGap: "20px", gridRowGap: "20px"}}>
-                        <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-                            <p>Utfyllende informasjon her jajajajaajaj, memmefemfefe efe sf sa dfasdfgas fg afg fgad garg</p>
-                        </div>
-                        <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-                            <DoughnutChart
-                                chartData={tasteData}
-                                legendPosition="bottom"
-                                topText="Smakssammensetning"
-                            />
-                        </div>
-                        <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-                            <DoughnutChart
-                                chartData={tasteData}
-                                legendPosition="bottom"
-                                topText="Smakssammensetning"
-                            />
-                        </div>
-                        <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-                            <BarChart
-                                chartData={feedbackData}
-                                legendPosition="bottom"
-                                topText="Tilbakemeldinger"
-                            />
+                    <div style={{padding: "10px"}}>
+                        <h2>{this.props.topText}</h2><br/>
+                        <div style={{
+                            display:"grid", gridTemplateColumns: "2fr 2fr", gridTemplateRows: "2fr 2fr",
+                            gridRow: "auto auto", gridColumnGap: "20px", gridRowGap: "20px"}}>
+                            <div style={{display: "flex", alignItems: "top", justifyContent: "center"}}>
+                                <p><b>Smak</b><br/>{this.props.smak}</p>
+                                <p style={{marginLeft: "10px"}}><b>Lukt</b><br/>{this.props.lukt}</p>
+                            </div>
+                            <div>
+                                <b>Passer til</b><br/>
+                                {this.props.passerTil.map(s => s !== '' ? <li>{s}</li> : '')}
+                            </div>
+                            <div>
+                                <b>Årgang</b><br/>
+                                {this.props.argang}
+                            </div>
+                            <div>
+                                <b>Literpris</b><br/>
+                                {this.props.literPris}
+                            </div>
+                            <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+                                <DoughnutChart
+                                    chartData={tasteData}
+                                    legendPosition="bottom"
+                                    topText="Smakssammensetning"
+                                />
+                            </div>
+                            <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+                                <BarChart
+                                    chartData={feedbackData}
+                                    legendPosition="bottom"
+                                    topText="Tilbakemeldinger"
+                                />
+                            </div>
                         </div>
                     </div>
                 </Modal>

@@ -5,7 +5,8 @@ const AppActionTypes = {
     UPDATE_ITEMS: 'UPDATE_ITEMS',
     LOAD_MORE_ITEMS: 'LOAD_MORE_ITEMS',
     SET_SORTING: 'SET_SORTING',
-    SET_FIELD: 'SET_FIELD'
+    SET_FIELD: 'SET_FIELD',
+    TOGGLE_MODAL: 'TOGGLE_MODAL'
 };
 
 export const syncSearchQuery = ({ name, value }) =>
@@ -42,6 +43,11 @@ export const setField = (index, field, val) => ({
     payload: { index: index, field: field, val: val }
 });
 
+export const toggleModal = (index) => ({
+    type: AppActionTypes.TOGGLE_MODAL,
+    payload: { index: index }
+});
+
 export const fetchItems = url => {
     console.log(url);
     return (dispatch) => {
@@ -60,6 +66,8 @@ const defaultState = {
     newQuery: true,
     items: [],
     limit: 10,
+    index: 0,
+    modalOpen: false,
     sorting: {
         column: null,
         direction: 'ascending',
@@ -124,6 +132,13 @@ export default function reducer(state, action) {
                 ...state,
                 isLoading: true,
                 limit: state.limit+10
+            };
+
+        case AppActionTypes.TOGGLE_MODAL:
+            return {
+                ...state,
+                modalOpen: !state.modalOpen,
+                index: action.payload.index
             };
 
         /*case AppActionTypes.SET_FIELD:
