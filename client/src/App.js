@@ -9,15 +9,15 @@ import PieChart from './Components/PieChart';
 import BarChart from './Components/BarChart';
 import DoughnutChart from './Components/DoughnutChart';
 import LineChart from './Components/LineChart';
-import axios from 'axios';
 import Modal from "react-responsive-modal";
-import {fetchItems, syncNewSearchQuery, updateItems} from './reduxTest';
+import {fetchItems, syncSearchQuery} from './reduxTest';
 
 class AppContent extends Component {
 
     constructor() {
         super();
         this.handleChange = this.handleChange.bind(this);
+        this.handleSort = this.handleSort.bind(this);
     }
 
     // TODO skal erstattes med Redux
@@ -39,17 +39,23 @@ class AppContent extends Component {
     };
 
     generateQuery = () => {
-        return "http://localhost:3000/Product?" +
+        return "http://localhost:12000/Product?" +
             ((!this.props.search_query.name) ? '' : `&Varenavn=${this.props.search_query.name}`) +
-            ((!this.props.search_query.volume) ? '' : `&Volum=${this.props.search_query.volume}`) +
+            ((!this.props.search_query.volume) ? '' : `&Volum=${this.props.search_query.volume.toString()}`) +
             ((!this.props.search_query.country) ? '' : `&Land=${this.props.search_query.country}`) +
-            ((!this.props.search_query.type) ? '' : `&Type=${this.props.search_query.type}`);
+            ((!this.props.search_query.type) ? '' : `&Varetype=${this.props.search_query.type}`) +
+            ((!this.props.sorting.column) ? '&sorting=Pris' : `&sorting=${this.props.sorting.column}`) +
+            ((this.props.sorting.direction === 'ascending') ? '&order=asc' : '&order=desc');
     };
 
     handleChange = ({ name, value }) => {
-        this.props.syncNewQuery({name, value});
-        this.props.fetch_items(this.generateQuery());
-        //this.getData();
+        this.props.sync_query({name, value}).then(()=>{
+            this.props.fetch_items(this.generateQuery())
+        });
+    };
+
+    handleSort = () => {
+        this.props.fetch_items(this.generateQuery())
     };
 
     onOpenModal = () => {
@@ -59,18 +65,6 @@ class AppContent extends Component {
     onCloseModal = () => {
         this.setState({ open: false });
     };
-
-    getData() {
-        axios.get(`http://localhost:3000/Product?name=${this.props.search_query.name}
-                   &&volume=${this.props.search_query.volume}&&country${this.props.search_query.country}
-                   &&type=${this.props.search_query.type}`)
-            .then(
-                response => {console.log(response.data.docs);this.props.update_items(response.data.docs)}
-            )
-            .catch(error => {
-                console.log('Feil');console.log(error); } )
-    };
-
 
     getChartData() {
         // Her vil vi implementere Ajax/Axios eller hva faen.
@@ -116,11 +110,7 @@ class AppContent extends Component {
                             <BarChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
                         </div>
                     </Modal>
-                <p>{this.props.search_query.name}</p>
-                <p>{this.props.search_query.type}</p>
-                <p>{this.props.search_query.country}</p>
-                <p>{this.props.search_query.volume}</p>
-                <ListView items={this.props.items} onClick={() => this.onOpenModal}/>
+                <ListView items={this.props.items} onSort={this.handleSort} onClick={() => this.onOpenModal}/>
                 <br/><br/>
             </div>
         );
@@ -130,13 +120,13 @@ class AppContent extends Component {
 const mapState = state => ({
     search_query: state.search_query,
     items: state.items,
-    isLoading: state.isLoading
+    isLoading: state.isLoading,
+    sorting: state.sorting
 });
 
 const mapDispatch = dispatch => ({
-    syncNewQuery: query => dispatch(syncNewSearchQuery(query)),
+    sync_query: query => dispatch(syncSearchQuery(query)),
     fetch_items: url => dispatch(fetchItems(url)),
-    update_items: url => dispatch(updateItems(url)),
 });
 
 export default connect(

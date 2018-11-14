@@ -26,10 +26,12 @@ class ListItem extends Component {
                     <Table.Cell><img className="item-icon" src={`../resources/${this.getIconType()}icon.png`} alt={"Icon"}/></Table.Cell>
                     <Table.Cell>{this.props.name}</Table.Cell>
                     <Table.Cell>{this.props.type}</Table.Cell>
+                    <Table.Cell>{this.props.alcohol}</Table.Cell>
                     <Table.Cell>{this.props.volume}</Table.Cell>
                     <Table.Cell>{this.props.price}</Table.Cell>
                     <Table.Cell>{this.props.country}</Table.Cell>
                     <Table.Cell>{this.props.year}</Table.Cell>
+                    <Table.Cell>{Math.round(this.props.apk*1000)/1000}</Table.Cell>
                 </Table.Row>
         );
     }

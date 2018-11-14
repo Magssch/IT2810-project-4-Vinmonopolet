@@ -11,7 +11,7 @@ class Query extends Component {
         this.props.onChange({name, value});
 
     parseOptions = () => {
-        let optionArray = [];
+        let optionArray = [{key: 0, value: null, text: this.props.placeholder}];
         this.props.options.map(option => optionArray.push({key: option, value: option, text: option}));
         return optionArray;
     };
