@@ -113,3 +113,4 @@ client/coverage
 
 # production
 client/build
+server/package-lock.json
