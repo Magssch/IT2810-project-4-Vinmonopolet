@@ -81,8 +81,6 @@ export default function reducer(state, action) {
             console.log(action.payload.sorting);
             return {
                 ...state,
-                items: state.sorting.direction === action.payload.sorting.direction ?
-                    state.items : state.items.reverse(),
                 sorting: action.payload.sorting
             };
         default:

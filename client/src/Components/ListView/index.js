@@ -22,6 +22,8 @@ class ListView extends Component {
             this.props.set_sorting({
                 column: this.props.sorting.column,
                 direction: this.props.sorting.direction === 'ascending' ? 'descending' : 'ascending'
+            }).then(()=>{
+                this.props.onSort();
             });
         }
     };
@@ -32,7 +34,7 @@ class ListView extends Component {
             {key:'Volum', field:'Volum'}, {key:'Pris', field:'Pris'}, {key:'Land', field:'Land'}, {key:'Argang', field:'Årgang'}];
 
             return (
-            <Table inverted sortable fixed selectable collapsing size={'large'}>
+            <Table inverted sortable fixed selectable size={'large'}>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell style={{width: "8%"}} />
