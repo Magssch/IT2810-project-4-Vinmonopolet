@@ -50,7 +50,7 @@ export const fetchItems = url => {
 
 const defaultState = {
     isLoading: false,
-    repeatQueries: false,
+    repeatQueries: 0,
     newQuery: true,
     items: [],
     limit: 10,
@@ -81,7 +81,7 @@ export default function reducer(state, action) {
                     [action.payload.name]: action.payload.value
                 },
                 isLoading: true,
-                repeatQueries: false
+                repeatQueries: 0
             };
 
         case AppActionTypes.UPDATE_ITEMS:
@@ -90,7 +90,7 @@ export default function reducer(state, action) {
             console.log("actionlen:"+action.payload.items.length);
 
             let repeatQueries = state.repeatQueries;
-            if(state.items.length === action.payload.items.length) {
+            if(state.items.length === action.payload.items.length && !state.newQuery) {
                 repeatQueries++;
             }
 
@@ -106,6 +106,7 @@ export default function reducer(state, action) {
             console.log(action.payload.sorting);
             return {
                 ...state,
+                repeatQueries: defaultState.repeatQueries,
                 isLoading: true,
                 newQuery: true,
                 sorting: action.payload.sorting

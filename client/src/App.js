@@ -142,7 +142,7 @@ class AppContent extends Component {
                               onClick={() => this.onOpenModal}/>
                     <Loader active={this.props.isLoading} inline='centered' />
                 </div>
-                <br/><br/>
+                <br/>
             </div>
         );
     }
