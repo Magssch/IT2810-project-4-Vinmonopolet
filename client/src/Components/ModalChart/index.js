@@ -1,41 +1,13 @@
 import React, { Component } from 'react';
-import PieChart from '../PieChart';
 import BarChart from '../BarChart';
 import DoughnutChart from '../DoughnutChart';
 import Modal from "react-responsive-modal";
 
 class ModalChart extends Component {
 
-    constructor() {
-        super();
-
-    }
-
-    getFeedback(likes, dislikes) {
-       return {
-            labels: ['Liker', 'Misliker'],
-            datasets: [{
-                label: 'Fjern data',
-                data: [likes, dislikes, 0],
-                backgroundColor: ['rgba(10, 255, 25, 0.6)', 'rgba(255, 0, 0, 0.6)'],
-            }],
-        };
-    }
-
-    getTastes(frisk, bitter, sodme) {
-        return {
-            labels: ['Friskhet', 'Bitterhet', 'Sødme'],
-            datasets: [{
-                label: 'Fjern data',
-                data: [frisk, bitter, sodme, 0],
-                backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 245, 0.6)', 'rgba(255, 206, 86, 0.6)'],
-            }],
-        };
-    }
-
     render() {
-        let feedbackData = this.getFeedback(this.props.likes, this.props.dislikes);
-        let tasteData = this.getTastes(this.props.friskhet, this.props.bitterhet, this.props.sodme);
+        let feedbackData = getFeedback(this.props.likes, this.props.dislikes);
+        let tasteData = getTastes(this.props.friskhet, this.props.bitterhet, this.props.sodme);
         return (
             <div>
                 <Modal
@@ -58,7 +30,7 @@ class ModalChart extends Component {
                             </div>
                             <div>
                                 <b>Passer til</b><br/>
-                                {this.props.passerTil.map(s => s !== '' ? <li>{s}</li> : '')}
+                                {this.props.passerTil.map((s, i) => s !== '' ? <li key={i}>{s}</li> : '')}
                             </div>
                             <div>
                                 <b>Årgang</b><br/>
@@ -89,5 +61,27 @@ class ModalChart extends Component {
         );
     }
 }
+
+const getFeedback = (likes, dislikes) => {
+    return {
+        labels: ['Liker', 'Misliker'],
+        datasets: [{
+            label: 'Fjern data',
+            data: [likes, dislikes, 0],
+            backgroundColor: ['rgba(10, 255, 25, 0.6)', 'rgba(255, 0, 0, 0.6)'],
+        }],
+    };
+};
+
+const getTastes = (frisk, bitter, sodme) => {
+    return {
+        labels: ['Friskhet', 'Bitterhet', 'Sødme'],
+        datasets: [{
+            label: 'Fjern data',
+            data: [frisk, bitter, sodme, 0],
+            backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 245, 0.6)', 'rgba(255, 206, 86, 0.6)'],
+        }],
+    };
+};
 
 export default ModalChart;
