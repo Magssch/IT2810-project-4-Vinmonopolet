@@ -36,7 +36,7 @@ router.get('/product',(req, res) => {
     content.Varenavn = {$regex: RegExp(req.query.Varenavn), $options:'-i'};
   }
   if (req.query.Pris) {
-    content.Pris = {$regex: RegExp(req.query.Pris), $options:'-i'};
+    content.Pris = req.query.Pris;
   }
   if (req.query.Varetype) {
     content.Varetype = {$regex: RegExp(req.query.Varetype), $options:'-i'};
@@ -48,16 +48,16 @@ router.get('/product',(req, res) => {
     content.Distrikt = {$regex: RegExp(req.query.Distrikt), $options:'-i'};
   }
   if (req.query.Alkohol) {
-    content.Alkohol = {$regex: RegExp(req.query.Alkohol), $options:'-i'};
+    content.Alkohol = req.query.Alkohol;
   }
   if (req.query.Argang) {
-    content.Argang = {$regex: RegExp(req.query.Argang), $options:'-i'};
+    content.Argang = req.query.Argang;
   }
   if (req.query.Volum) {
-    content.Volum = {$regex: RegExp(req.query.Volum), $options:'-i'};
+    content.Volum = req.query.Volum;
   }
   if (req.query.Kategori) {
-    content.Kategori = {$regex: RegExp(req.query.Kategori), $options:'-i'};
+    content.Kategori = req.query.Kategori;
   }
 
   ProductModel.paginate(content,{
