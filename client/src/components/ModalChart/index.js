@@ -13,7 +13,7 @@ class ModalChart extends Component {
             <div>
                 <Modal
                     open={this.props.open}
-                    onClose={() => this.props.onClose()}
+                    onClose={() => this.props.onClose(-1)}
                     blockScroll={false}
                     showCloseIcon={false}
                     center={this.props.center}
