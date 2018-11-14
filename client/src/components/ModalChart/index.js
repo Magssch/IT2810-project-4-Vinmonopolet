@@ -52,6 +52,7 @@ class ModalChart extends Component {
                                     chartData={feedbackData}
                                     legendPosition="bottom"
                                     topText="Tilbakemeldinger"
+                                    displayLegend={false}
                                 />
                             </div>
                         </div>
@@ -66,7 +67,7 @@ const getFeedback = (likes, dislikes) => {
     return {
         labels: ['Liker', 'Misliker'],
         datasets: [{
-            label: 'Fjern data',
+            label: '',
             data: [likes, dislikes, 0],
             backgroundColor: ['rgba(10, 255, 25, 0.6)', 'rgba(255, 0, 0, 0.6)'],
         }],

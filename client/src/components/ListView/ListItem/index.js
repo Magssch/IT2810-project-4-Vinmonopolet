@@ -4,20 +4,23 @@ import './ListItem.css';
 
 class ListItem extends Component {
 
+    // Bindings
     constructor() {
         super();
         this.handleChange = this.handleChange.bind(this);
         this.handleRating = this.handleRating.bind(this);
     }
 
+    // Handler for user selecting an item
     handleChange = () => {
-        console.log("DU TRYKKET PÅ "+this.props.index);
         this.props.onClick(this.props.index);
     };
 
+    // Handler for user giving a rating (like/dislike)
     handleRating = (isLike) =>
         this.props.handleRating(this.props.index, isLike);
 
+    // Returns appropriate icon-type based on keywords in item type.
     getIconType = () => {
         if(this.props.type.toLowerCase().includes("vin")) return "wine";
         if(this.props.type.toLowerCase().includes("cha")) return "wine";

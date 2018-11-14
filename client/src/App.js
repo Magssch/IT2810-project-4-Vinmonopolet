@@ -7,12 +7,13 @@ import Query from './components/Query';
 import { Form, Loader } from 'semantic-ui-react';
 import {fetchItems, syncSearchQuery, loadMoreItems} from './actions';
 
+// Fetch values for Query-fields. These are hard-coded in uniqueData.json
 const json = require('./uniqueData.json');
-
 const volumeOptions = json.volum, countryOptions = json.land, typeOptions = json.type;
 
 class AppContent extends Component {
 
+    // Bindings
     constructor() {
         super();
         this.handleChange = this.handleChange.bind(this);
@@ -20,10 +21,12 @@ class AppContent extends Component {
         this.handleScroll = this.handleScroll.bind(this);
     }
 
+    // Fetch 10 initial items immediately upon loading app.
     componentWillMount(){
         this.props.fetch_items(this.generateQuery());
     };
 
+    // event-listeners for scrolling. Enables dynamic loading upon reaching page bottom.
     componentDidMount() {
         window.addEventListener("scroll", this.handleScroll);
     }
@@ -32,6 +35,7 @@ class AppContent extends Component {
         window.removeEventListener("scroll", this.handleScroll);
     }
 
+    // Generates REST-query based on current search query and sorting in Redux-state
     generateQuery = () => {
         return "http://localhost:12000/Product?" +
             ((!this.props.search_query.name) ? '' : `&Varenavn=${this.props.search_query.name}`) +
@@ -64,7 +68,7 @@ class AppContent extends Component {
             && !this.props.isLoading
         ) {
             this.props.load_more_items().then(()=>{
-                this.props.fetch_items(this.generateQuery())
+                this.props.fetch_items(this.generateQuery()) // Run fetch_items async upon state update.
             });
         }
     };
@@ -96,6 +100,7 @@ class AppContent extends Component {
     }
 }
 
+// Redux-props for accessing state and dispatching actions.
 const mapState = state => ({
     search_query: state.search_query,
     items: state.items,

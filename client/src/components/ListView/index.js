@@ -8,73 +8,76 @@ import ModalChart from "../ModalChart";
 
 class ListView extends Component {
 
+    // Bindings
     constructor() {
         super();
         this.handleRating = this.handleRating.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
     }
 
+    // Handler that is run upon sorting table-elements. Will query db for a new sorted result set.
     handleSort = clickedColumn => () => {
-        if (this.props.sorting.column !== clickedColumn) {
             this.props.set_sorting({
-                column: clickedColumn,
-                direction: 'descending',
+                column: (this.props.sorting.column !== clickedColumn) ? clickedColumn : this.props.sorting.column,
+                direction: (this.props.sorting.column !== clickedColumn) ?
+                    'descending' : (this.props.sorting.direction === 'ascending' ? 'descending' : 'ascending')
             }).then(()=>{
-                this.props.onSort();
+                this.props.onSort(); // Inform parent of sorting-action (async)
             });
-        } else {
-            this.props.set_sorting({
-                column: this.props.sorting.column,
-                direction: this.props.sorting.direction === 'ascending' ? 'descending' : 'ascending'
-            }).then(()=>{
-                this.props.onSort();
-            });
-        }
     };
 
+    // Handler that is run upon giving a like or dislike on an item in ListItem.
     handleRating = (index, isLike) => {
-        console.log(this.props.items[index][(isLike ? 'Liker' : 'Misliker')]);
-        this.props.set_field(index, (isLike ? 'Liker' : 'Misliker'), this.props.items[index][(isLike ? 'Liker' : 'Misliker')]+1)
+        console.log(this.props.items[index][(isLike ? 'Liker' : 'Misliker')]);  // TODO REMOVE DEBUG
+        this.props.set_field(index, (isLike ? 'Liker' : 'Misliker'),
+            this.props.items[index][(isLike ? 'Liker' : 'Misliker')]+1)
     };
 
+    // Handler that is run upon clicking an item / table entry. Toggles advanced view
     toggleModal = (index) =>
         this.props.toggle_modal(index ? index : 0);
 
+    // Renders modal component. Checks if items are loaded before loading.
     renderModal() {
         if(this.props.items.length > 0) {
             let item = this.props.items[this.props.index];
             return(<ModalChart
-                // Sender inn en verdi for å si om modalen skal vises eller lukkes
+                // Is modal opened?
                 open={this.props.modalOpen}
-                // Funksjon som kjører hver gang modalen lukkes via "esc" eller museklikk
+                // Handler to be run upon closing modal
                 onClose={this.toggleModal}
-                // Bestemmer om innholdet i modalen skal være sentrert
-                // Overskriften til modalen, vi sender inn varenavn her
+                // Header text
                 topText={item.Varenavn}
-                // Diverse info/statistikk om varen
-                likes={item.Liker}                                          // Heltall
-                dislikes={item.Misliker}                                        // Heltall
-                argang={item.Argang}                                       // Heltall
-                literPris={item.Literpris}                                 // Desimaltall
-                friskhet={item.Friskhet}                                        // Heltall
-                bitterhet={item.Bitterhet}                                       // Heltall
-                sodme={item.Sodme}                                           // Heltall
-                lukt={item.Lukt}                                        // Streng
-                smak={item.Smak}                                 // Streng
-                passerTil={[item.Passertil01, item.Passertil02, item.Passertil03]}       // Liste med strenger
+                // Misc. info
+                likes={item.Liker}                                          // Integer
+                dislikes={item.Misliker}                                        // Integer
+                argang={item.Argang}                                       // Integer
+                literPris={item.Literpris}                                 // Float
+                friskhet={item.Friskhet}                                        // Integer
+                bitterhet={item.Bitterhet}                                       // Integer
+                sodme={item.Sodme}                                           // Integer
+                lukt={item.Lukt}                                        // String
+                smak={item.Smak}                                 // String
+                passerTil={[item.Passertil01, item.Passertil02, item.Passertil03]}       // Array of strings
+                // Show close icon?
                 showCloseIcon={false}
+                // Should content be centered?
                 center={true}
             />);
         } else {
-            return('');
+            return(''); // Return empty string if no items are loaded yet.
         }
     }
 
     render() {
+        // Shortcuts for sorting
         let direction = this.props.sorting.direction, column = this.props.sorting.column;
+
+        // Array for generating headers via functional syntax
         let headers = [{key:'Varenavn', field:'Varenavn'}, {key:'Varetype', field:'Varetype'},
             {key:'Alkohol', field:'Alkohol'}, {key:'Volum', field:'Volum'}, {key:'Pris', field:'Pris'},
             {key:'Land', field:'Land'}, /*{key:'Argang', field:'Årgang'},*/ {key:'APK', field:'Alkohol/Krone'}];
+
             return (
                <div>
                    {this.renderModal()}
@@ -83,6 +86,7 @@ class ListView extends Component {
                             <Table.Row>
                                 <Table.HeaderCell style={{width: "7%"}} />
                                 {
+                                    // Generates column headers via functional syntax
                                     headers.map(
                                         (header, i) =>
                                             (<Table.HeaderCell
@@ -99,6 +103,7 @@ class ListView extends Component {
                         </Table.Header>
                         <Table.Body>
                             {
+                                // Generates rows via functional syntax
                                 this.props.items.map(
                                     (item, i) => <ListItem
                                                 index={i}
@@ -124,6 +129,7 @@ class ListView extends Component {
     }
 }
 
+// Redux-props for accessing state and dispatching actions.
 const mapState = state => ({
     sorting: state.sorting,
     modalOpen: state.modalOpen,
