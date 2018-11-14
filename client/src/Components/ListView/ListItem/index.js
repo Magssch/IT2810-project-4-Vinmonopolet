@@ -31,7 +31,7 @@ class ListItem extends Component {
                     <Table.Cell>{this.props.price}</Table.Cell>
                     <Table.Cell>{this.props.country}</Table.Cell>
                     <Table.Cell>{this.props.year}</Table.Cell>
-                    <Table.Cell>{this.props.apk}</Table.Cell>
+                    <Table.Cell>{Math.round(this.props.apk*1000)/1000}</Table.Cell>
                 </Table.Row>
         );
     }
