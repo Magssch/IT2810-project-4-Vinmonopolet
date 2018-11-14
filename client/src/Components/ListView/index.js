@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import ListItem from './ListItem/index';
 import { Table } from 'semantic-ui-react';
 import './ListView.css';
-import {setSorting} from "../../reduxTest";
+import {setSorting, setField} from "../../reduxTest";
 import connect from "react-redux/es/connect/connect";
 
 class ListView extends Component {
+
+    constructor() {
+        super();
+        this.handleRating = this.handleRating.bind(this);
+    }
 
     handleChange = () =>
         this.props.onClick();
@@ -26,6 +31,11 @@ class ListView extends Component {
                 this.props.onSort();
             });
         }
+    };
+
+    handleRating = (index, isLike) => {
+        console.log(this.props.items[index][(isLike ? 'Liker' : 'Misliker')]);
+        this.props.set_field(index, (isLike ? 'Liker' : 'Misliker'), this.props.items[index][(isLike ? 'Liker' : 'Misliker')]+1)
     };
 
     render() {
@@ -51,12 +61,14 @@ class ListView extends Component {
                                     </Table.HeaderCell>)
                             )
                         }
+                        <Table.HeaderCell style={{width: "10%"}} />
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
                     {
                         this.props.items.map(
-                            item => <ListItem
+                            (item, i) => <ListItem
+                                        index={i}
                                         key={item.Varenummer}
                                         name={item.Varenavn}
                                         type={item.Varetype}
@@ -66,6 +78,9 @@ class ListView extends Component {
                                         country={item.Land}
                                         year={item.Argang}
                                         apk={item.APK}
+                                        likes={item.Liker}
+                                        dislikes={item.Misliker}
+                                        handleRating={this.handleRating}
                                         onClick={this.handleChange}
                                     />)
                     }
@@ -81,6 +96,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
     set_sorting: sorting => dispatch(setSorting(sorting)),
+    set_field: (rating, isLike, val) => dispatch(setField(rating, isLike, val))
 });
 
 export default connect(

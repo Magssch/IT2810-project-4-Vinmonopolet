@@ -4,7 +4,8 @@ const AppActionTypes = {
     SYNC_NEW_SEARCH_QUERY: 'SYNC_NEW_SEARCH_QUERY',
     UPDATE_ITEMS: 'UPDATE_ITEMS',
     LOAD_MORE_ITEMS: 'LOAD_MORE_ITEMS',
-    SET_SORTING: 'SET_SORTING'
+    SET_SORTING: 'SET_SORTING',
+    SET_FIELD: 'SET_FIELD'
 };
 
 export const syncSearchQuery = ({ name, value }) =>
@@ -35,6 +36,11 @@ export const setSorting = sorting => dispatch => {
     });
     return Promise.resolve();
 };
+
+export const setField = (index, field, val) => ({
+    type: AppActionTypes.SET_FIELD,
+    payload: { index: index, field: field, val: val }
+});
 
 export const fetchItems = url => {
     console.log(url);
@@ -71,7 +77,7 @@ export default function reducer(state, action) {
 
     switch (action.type) {
         case AppActionTypes.SYNC_NEW_SEARCH_QUERY:
-            console.log("NEWQUERY");
+            //console.log("NEWQUERY");
             return {
                 ...state,
                 limit: defaultState.limit,
@@ -85,9 +91,9 @@ export default function reducer(state, action) {
             };
 
         case AppActionTypes.UPDATE_ITEMS:
-            console.log(action.payload.items);
+            /*console.log(action.payload.items);
             console.log("statelen:"+state.items.length);
-            console.log("actionlen:"+action.payload.items.length);
+            console.log("actionlen:"+action.payload.items.length);*/
 
             let repeatQueries = state.repeatQueries;
             if(state.items.length === action.payload.items.length && !state.newQuery) {
@@ -103,7 +109,7 @@ export default function reducer(state, action) {
             };
 
         case AppActionTypes.SET_SORTING:
-            console.log(action.payload.sorting);
+            //console.log(action.payload.sorting);
             return {
                 ...state,
                 repeatQueries: defaultState.repeatQueries,
@@ -113,13 +119,25 @@ export default function reducer(state, action) {
             };
 
         case AppActionTypes.LOAD_MORE_ITEMS:
-            console.log("loading "+(state.limit+10)+" items");
+            //console.log("loading "+(state.limit+10)+" items");
             return {
                 ...state,
                 isLoading: true,
                 limit: state.limit+10
             };
 
+        /*case AppActionTypes.SET_FIELD:
+            return {
+                ...state,
+                items: {
+                    ...state.items,
+                    [action.payload.index]: {
+                        ...state.items[action.payload.index],
+                        [action.payload.field]: action.payload.val
+
+                    }
+                }
+            };*/
         default:
             return state;
     }

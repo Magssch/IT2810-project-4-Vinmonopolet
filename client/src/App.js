@@ -71,13 +71,11 @@ class AppContent extends Component {
 
     // Handler that is run when scrolling. Will load more items (increase pagination limit) if close to bottom
     handleScroll = () => {
-        console.log(this.props.repeatQueries);
         if (
             window.innerHeight + document.documentElement.scrollTop+200
             >= document.documentElement.scrollHeight
             && !(this.props.repeatQueries > 2)
         ) {
-            console.log("LOAD");
             this.props.load_more_items().then(()=>{
                 this.props.fetch_items(this.generateQuery())
             });
