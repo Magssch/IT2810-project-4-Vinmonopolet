@@ -64,7 +64,7 @@ class AppContent extends Component {
         if (
             window.innerHeight + document.documentElement.scrollTop+200
             >= document.documentElement.scrollHeight
-            && !(this.props.repeatQueries > 2)
+            && !(this.props.repeatQueries > 1)
             && !this.props.isLoading
         ) {
             this.props.load_more_items().then(()=>{

@@ -1,4 +1,5 @@
 import {AppActionTypes} from '../actions';
+import _ from 'lodash';
 
 // Initial app-state
 const defaultState = {
@@ -47,7 +48,7 @@ export default function rootReducer(state, action) {
             let repeatQueries = state.repeatQueries;
 
             // Avoid unnecessary redraws and fetches by recording amount of cases where old state = new state
-            if(state.items.length === action.payload.items.length && !state.newQuery) {
+            if(_.isEqual(state.items , action.payload.items)  && !state.newQuery) {
                 repeatQueries++;
             }
 
