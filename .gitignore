@@ -114,3 +114,5 @@ client/coverage
 # production
 client/build
 server/package-lock.json
+server/node_modules/.cache/@babel/register/.babel.7.1.5.development.json
+server/node_modules/.cache/@babel/register/.babel.7.1.5.development.json
