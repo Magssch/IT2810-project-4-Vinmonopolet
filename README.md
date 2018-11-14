@@ -12,3 +12,13 @@ https://github.com/jerairrest/react-chartjs-2
 * Modal-komponent:
 https://www.npmjs.com/package/react-responsive-modal
 
+* // TODO KILDE FOR CHARTENE
+
+##Teknologier
+* React
+* Redux
+* react-redux
+* react-thunk
+* axios
+
+
