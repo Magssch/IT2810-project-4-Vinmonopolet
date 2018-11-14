@@ -10,6 +10,7 @@ import BarChart from './Components/BarChart';
 import DoughnutChart from './Components/DoughnutChart';
 import LineChart from './Components/LineChart';
 import Modal from "react-responsive-modal";
+import ModalChart from "./Components/ModalChart"
 import {fetchItems, syncSearchQuery} from './reduxTest';
 
 class AppContent extends Component {
@@ -34,7 +35,6 @@ class AppContent extends Component {
     typeOptions = ['Vin', 'Øl'];
 
     componentWillMount(){
-        this.getChartData();
         this.props.fetch_items(this.generateQuery());
     };
 
@@ -97,19 +97,27 @@ class AppContent extends Component {
                         <Query name="type" placeholder="Type" options={this.typeOptions} onChange={this.handleChange}/>
                     </Form.Group>
                 </Form>
-                    <Modal
+                    <ModalChart
+                        // Sender inn en verdi for å si om modalen skal vises eller lukkes
                         open={open}
+                        // Funksjon som kjører hver gang modalen lukkes via "esc" eller museklikk
                         onClose={this.onCloseModal.bind(this)}
-                        showCloseIcon={false}
-                        center={true}>
-                        <h2>Simple centered modal</h2>
-                        <div className="chartContainer">
-                            <DoughnutChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
-                            <PieChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
-                            <LineChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
-                            <BarChart chartData={this.state.chartData} legendPosition="bottom" topText="Doughnut"/>
-                        </div>
-                    </Modal>
+                        // Bestemmer om innholdet i modalen skal være sentrert
+                        center={true}
+                        // Overskriften til modalen, vi sender inn varenavn her
+                        topText={"Om " + "varenavn her"}
+                        // Diverse info/statistikk om varen
+                        likes={10}                                          // Heltall
+                        dislikes={2}                                        // Heltall
+                        argang={6969}                                       // Heltall
+                        volumPrice={169.69}                                 // Desimaltall
+                        friskhet={6}                                        // Heltall
+                        bitterhet={2}                                       // Heltall
+                        sodme={1}                                           // Heltall
+                        lukt={"god"}                                        // Streng
+                        smak={"fantastisk"}                                 // Streng
+                        passerTil={"kjøtt"}                                 // Streng
+                    />
                 <ListView items={this.props.items} onSort={this.handleSort} onClick={() => this.onOpenModal}/>
                 <br/><br/>
             </div>
