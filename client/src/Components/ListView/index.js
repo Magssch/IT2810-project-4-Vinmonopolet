@@ -31,7 +31,8 @@ class ListView extends Component {
     render() {
         let direction = this.props.sorting.direction, column = this.props.sorting.column;
         let headers = [{key:'Varenavn', field:'Varenavn'}, {key:'Varetype', field:'Varetype'},
-            {key:'Volum', field:'Volum'}, {key:'Pris', field:'Pris'}, {key:'Land', field:'Land'}, {key:'Argang', field:'Årgang'}];
+            {key:'Alkohol', field:'Alkohol'}, {key:'Volum', field:'Volum'}, {key:'Pris', field:'Pris'},
+            {key:'Land', field:'Land'}, {key:'Argang', field:'Årgang'}, {key:'APK', field:'APK'}];
 
             return (
             <Table inverted sortable fixed selectable size={'large'}>
@@ -59,10 +60,12 @@ class ListView extends Component {
                                         key={item.Varenummer}
                                         name={item.Varenavn}
                                         type={item.Varetype}
+                                        alcohol={item.Alkohol}
                                         volume={item.Volum}
                                         price={item.Pris}
                                         country={item.Land}
                                         year={item.Argang}
+                                        apk={item.APK}
                                         onClick={this.handleChange}
                                     />)
                     }
