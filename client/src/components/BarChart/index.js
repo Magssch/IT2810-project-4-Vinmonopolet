@@ -4,6 +4,7 @@ import {Bar} from 'react-chartjs-2';
 
 class BarChart extends Component {
 
+    // Standardrops in case no props are sent into the component
     static defaultProps = {
         displayTitle: true,
         displayLegend: true,

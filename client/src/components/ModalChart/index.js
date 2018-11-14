@@ -6,6 +6,7 @@ import Modal from "react-responsive-modal";
 class ModalChart extends Component {
 
     render() {
+        // Structures props into compatible format for the charts
         let feedbackData = getFeedback(this.props.likes, this.props.dislikes);
         let tasteData = getTastes(this.props.friskhet, this.props.bitterhet, this.props.sodme);
         return (
@@ -63,6 +64,7 @@ class ModalChart extends Component {
     }
 }
 
+    // Retrieves data for the Like/Dislike graph
 const getFeedback = (likes, dislikes) => {
     return {
         labels: ['Liker', 'Misliker'],
@@ -74,6 +76,7 @@ const getFeedback = (likes, dislikes) => {
     };
 };
 
+    // Retrieves data for the tastes-graph
 const getTastes = (frisk, bitter, sodme) => {
     return {
         labels: ['Friskhet', 'Bitterhet', 'Sødme'],

@@ -4,6 +4,7 @@ import {Doughnut} from 'react-chartjs-2';
 
 class DoughnutChart extends Component {
 
+    // Standardrops in case no props are sent into the component
     static defaultProps = {
         displayTitle: true,
         displayLegend: true,
