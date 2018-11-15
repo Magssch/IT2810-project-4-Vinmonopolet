@@ -1,7 +1,7 @@
 # Dokumentasjon
 #### Magnus Schjølberg, Åsmund Haugse, Viktor Solberg
 
-##Overordnet beskrivelse av prosjektet
+## Overordnet beskrivelse av prosjektet
 Informasjon om Vinmonopolets produkter er fritt tilgjengelig for bruk i egne tjenester.
 Vi har i denne oppgaven derfor benyttet oss av deres produktdatabase, hentet ut alle produkter
 og lagt disse inn i vår egen database som kjører på NTNU sine servere. Vi har både trimmet bort
