@@ -33,22 +33,22 @@ class ListItem extends Component {
 
     render() {
         return (
-                <Table.Row style={{cursor: "pointer"}}>
-                    <Table.Cell onClick={() => this.handleChange()} textAlign={"center"}>
+                <Table.Row className='db-item' style={{cursor: "pointer"}}>
+                    <Table.Cell className='db-item-field-image' onClick={() => this.handleChange()} textAlign={"center"}>
                         <img className="item-icon" src={`../resources/${this.getIconType()}icon.png`} alt={"Icon"}/>
                     </Table.Cell>
-                    <Table.Cell onClick={() => this.handleChange()} >{this.props.name}</Table.Cell>
-                    <Table.Cell onClick={() => this.handleChange()} >{this.props.type}</Table.Cell>
-                    <Table.Cell onClick={() => this.handleChange()} >{this.props.alcohol}</Table.Cell>
-                    <Table.Cell onClick={() => this.handleChange()} >{this.props.volume}</Table.Cell>
-                    <Table.Cell onClick={() => this.handleChange()} >{this.props.price}</Table.Cell>
-                    <Table.Cell onClick={() => this.handleChange()} >{this.props.country}</Table.Cell>
-                    <Table.Cell onClick={() => this.handleChange()}>
+                    <Table.Cell className='db-item-field-name' onClick={() => this.handleChange()} >{this.props.name}</Table.Cell>
+                    <Table.Cell className='db-item-field-type' onClick={() => this.handleChange()} >{this.props.type}</Table.Cell>
+                    <Table.Cell className='db-item-field-alcohol' onClick={() => this.handleChange()} >{this.props.alcohol}</Table.Cell>
+                    <Table.Cell className='db-item-field-volume' onClick={() => this.handleChange()} >{this.props.volume}</Table.Cell>
+                    <Table.Cell className='db-item-field-price' onClick={() => this.handleChange()} >{this.props.price}</Table.Cell>
+                    <Table.Cell className='db-item-field-country' onClick={() => this.handleChange()} >{this.props.country}</Table.Cell>
+                    <Table.Cell className='db-item-field-apk' onClick={() => this.handleChange()}>
                         <b style={this.props.apk < 0.05 ? {color: `rgba(206, 58, 28, ${(1-this.props.apk*10)})`} :
                             {color: `rgba(89, 204, 22, ${this.props.apk*10})`}}>
                         {Math.round(this.props.apk*1000)/1000}</b>
                     </Table.Cell>
-                    <Table.Cell textAlign={'center'}>
+                    <Table.Cell className='db-item-field-rating' textAlign={'center'}>
                         <div style={{overflow: "hidden"}}>
                             <Icon name={"thumbs down outline"} onClick={() => this.handleRating(false)}/>
                             <b style={
