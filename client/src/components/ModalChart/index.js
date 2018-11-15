@@ -68,7 +68,7 @@ class ModalChart extends Component {
 const getFeedback = (likes, dislikes) => {
     return {
         labels: ['Liker', 'Misliker'],
-        datasets: [{
+            datasets: [{
             label: '',
             data: [likes, dislikes, 0],
             backgroundColor: ['rgba(10, 255, 25, 0.6)', 'rgba(255, 0, 0, 0.6)'],
