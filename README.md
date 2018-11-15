@@ -24,15 +24,10 @@ vil grafen om smakssammensetning være blank.
 
 
 
-I denne oppgaven er utfordringen å designe og implementere en søkbar
-"katalog" hvor objektene kan være hva som helst (musikk, film, salgsobjekter,
-steder i verden etc.). I oppgaven inngår å sette opp en database og implementere et
-REST api på server (alternativt bruk av graphQL) , og implementere en klientapplikasjon
-som har søk, filtrering og sortering og viser bruk av state managment.
 
 
 
-##Teknologier og komponenter
+## Teknologier og komponenter
 * React
 * Redux
 * react-redux
@@ -42,17 +37,38 @@ som har søk, filtrering og sortering og viser bruk av state managment.
 * react-responsive-modal
 
 
-##Backend
+## Backend
+
+// HER FYLLER DU UT OZZY
 
 
-##Frontend
+## Frontend
+
+### Visualisering av data
+
+### react-responsive-modal
+
+### react-chart
 
 
-##Testing
+### Semantic UI
 
 
+### evt andre ting
 
-##Kilder
+
+## Testing
+
+### Cypress
+
+### Jest
+
+### Mocha
+
+### Chai
+
+
+## Kilder
 
 * React Semantic UI:
 https://react.semantic-ui.com/
