@@ -1,29 +1,21 @@
 import React, { Component } from 'react';
-import {Doughnut} from 'react-chartjs-2';
+import {Pie} from 'react-chartjs-2';
 
 
-class DoughnutChart extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            chartData: props.chartData,
-        }
-    }
+class PieChart extends Component {
 
     static defaultProps = {
         displayTitle: true,
         displayLegend: true,
         legendPosition: 'right',
         topText: 'data',
-    }
+    };
 
     render() {
-
         return(
             <div className="chart">
-                <Doughnut
-                    data={this.state.chartData}
+                <Pie
+                    data={this.props.chartData}
                     options={{
                         title: {
                             display: 'Number of units',
@@ -38,7 +30,6 @@ class DoughnutChart extends Component {
             </div>
         )
     }
-
 }
 
-export default DoughnutChart;
+export default PieChart;

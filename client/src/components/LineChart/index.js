@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
-import {Pie} from 'react-chartjs-2';
+import {Line} from 'react-chartjs-2';
 
 
-class PieChart extends Component {
+class LineChart extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            chartData: props.chartData,
-        }
-    }
-
+    // Standardrops in case no props are sent into the component
     static defaultProps = {
         displayTitle: true,
         displayLegend: true,
         legendPosition: 'right',
         topText: 'data',
-    }
+    };
 
     render() {
+
         return(
             <div className="chart">
-                <Pie
-                    data={this.state.chartData}
+                <Line
+                    data={this.props.chartData}
                     options={{
                         title: {
                             display: 'Number of units',
@@ -37,6 +32,7 @@ class PieChart extends Component {
             </div>
         )
     }
+
 }
 
-export default PieChart;
+export default LineChart;
