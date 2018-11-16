@@ -1,8 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
-import productRoute from './routes/product'
+import productRoute from './routes/product';
 import mongoose from 'mongoose';
+
 
 const app = express();
 
