@@ -1,32 +1,27 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
-import customerRoute from './routes/customer'
 import productRoute from './routes/product'
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import cors from 'cors';
 
 const app = express();
-dotenv.load({path: '.env'});
 
 app.use(bodyParser.json());
 app.use(productRoute);
-app.use(customerRoute);
-app.use(cors());
 
 
-app.use((req,res,next) => { 
+app.use((req,res,next) => {  
   console.log(`${new Date().toString()} => ${req.originalUrl}`,req.body);
   next()
 });
 
 //lokalt:
-const server=process.env.NODE_ENV;
-console.log(server)
+ const server=process.env.NODE_ENV;
+//const server = 'mongodb://it2810-46.idi.ntnu.no:27017/prosjekt4'
+
 //Connect to the database(only done once)
 //mongoose.connect(`mongodb://${user}:${password}@${server}/${database}`)
-mongoose.connect("mongodb://it2810-46.idi.ntnu.no:27017/prosjekt4", { useNewUrlParser: true } )
+mongoose.connect(server, { useNewUrlParser: true } )
 
 
 app.use(function(req, res, next) {
@@ -36,8 +31,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use(customerRoute)
-app.use(productRoute)
 app.use(express.static('public'))
 
 
@@ -47,14 +40,12 @@ app.use((req,res,next) => {
 })
 
 // Handler for 500
-app.use((err,req,res,next) => {
+app.use((err,req,res,next) => { 
   console.error(err.stack)
   res.sendFile(path.join(__dirname,'../public/500.html'))
 })
 var PORT = 12000;
 
-// startServer();
-app.listen(PORT, () => console.info(`Server has started on ${PORT}`));
+module.exports = app.listen(PORT, () => console.info(`Server has started on ${PORT}`));
 
 //here
-export default server;
