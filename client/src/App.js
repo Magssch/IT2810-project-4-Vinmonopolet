@@ -24,7 +24,7 @@ class AppContent extends Component {
 
     // Fetch 10 initial items immediately upon loading app.
     componentWillMount(){
-        this.props.fetch_items(this.generateQuery());
+        this.props.fetch_items(this.generateQuery()).then(()=> setTimeout(this.handleScroll(), 3000));
     };
 
     // event-listeners for scrolling. Enables dynamic loading upon reaching page bottom.

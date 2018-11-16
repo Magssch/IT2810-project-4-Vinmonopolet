@@ -187,7 +187,7 @@ Som UI-bibliotek har vi valgt React-implementasjonen av Semantic UI. Vi har valg
 For å gjøre automatisert end-to-end testing har vi i vårt prosjekt benyttet oss av Cypress.
 Dette er et verktøy som lar oss skrive automatiserte tester som interagerer med siden på samme måte som et menneske ville gjort.
 For å vise grunnleggende ferdigheter i denne typen testing har vi derfor laget to tester som til sammen tester det meste av funksjonalitet på siden.
-Du kan kjøre cypress ved å først `cd client` og deretter skrive `npm run cypress`. Du vil da finne to tester, `navigation_spec.js` og `search_query_spec.js` som henholdsvis tester navigering på siden og søking i databasen.
+Du kan kjøre cypress ved å først `cd client` og deretter skrive `npm run cypress`. Du vil da finne tre tester, `navigation_spec.js`, `put_request_spec.js` og `search_query_spec.js` som henholdsvis tester navigering på siden, endring av verdier i databasen og søking i databasen.
 Disse kan du kjøre ved å trykke deg inn på de og du skal deretter få opp et nettleser-vindu hvor disse testene kjøres.
 Cypress gir også en tidslinje for testingen i venstre sidebar, du kan trykke på de forskjellige hendelsene for å se hva testen så og søkte etter i det tidspunktet.
 
