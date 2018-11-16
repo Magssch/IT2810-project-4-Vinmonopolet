@@ -5,6 +5,7 @@ import ListView from './components/ListView';
 import Search from './components/Search';
 import Query from './components/Query';
 import { Form, Loader } from 'semantic-ui-react';
+import {debounce} from 'lodash';
 import {fetchItems, syncSearchQuery, loadMoreItems} from './actions';
 
 // Fetch values for Query-fields. These are hard-coded in uniqueData.json
@@ -42,17 +43,14 @@ class AppContent extends Component {
             ((!this.props.search_query.volume) ? '' : `&Volum=${this.props.search_query.volume}`) +
             ((!this.props.search_query.country) ? '' : `&Land=${this.props.search_query.country}`) +
             ((!this.props.search_query.type) ? '' : `&Varetype=${this.props.search_query.type}`) +
-            ((!this.props.limit) ? '' : `&limit=${this.props.limit}`) +
+            (this.props.newQuery && this.props.limit > 10 ? `&limit=${this.props.limit}` : `&page=${this.props.limit/10}&limit=10`) +
             ((!this.props.sorting.column) ? '&sorting=Pris' : `&sorting=${this.props.sorting.column}`) +
             ((this.props.sorting.direction === 'ascending') ? '&order=asc' : '&order=desc');
     };
 
     // Handler that is run upon inputting new data into Query or Search components.
-    handleChange = ({ name, value }) => {
-        this.props.sync_query({name, value}).then(()=>{
-            this.props.fetch_items(this.generateQuery())
-        });
-    };
+    handleChange = debounce(({ name, value }) => { this.props.sync_query({name, value}).then(
+            () => this.props.fetch_items(this.generateQuery()))}, 300);
 
     // Handler that is run upon sorting items in ListView
     handleSort = () => {
@@ -78,7 +76,7 @@ class AppContent extends Component {
         return (
             <div className="App">
                 <img className="App-logo" src={"../resources/vinmonopolet.png"} alt={"Vinmonopolet"}/>
-                <Form style={{width: "80%"}}>
+                <Form style={{width: "100%"}}>
                     <Form.Group>
                         <Search isLoading={this.props.isLoading} onChange={this.handleChange}/>
                         <Query name="volume" placeholder="Volum" options={volumeOptions}
@@ -90,7 +88,7 @@ class AppContent extends Component {
                     </Form.Group>
                 </Form>
                 <div>
-                    <ListView items={this.props.items} onSort={this.handleSort}/>
+                    <ListView onSort={this.handleSort}/>
                     <br/>
                     <Loader active={this.props.isLoading} inline='centered' />
                 </div>
@@ -103,10 +101,10 @@ class AppContent extends Component {
 // Redux-props for accessing state and dispatching actions.
 const mapState = state => ({
     search_query: state.search_query,
-    items: state.items,
     isLoading: state.isLoading,
     sorting: state.sorting,
     limit: state.limit,
+    newQuery: state.newQuery,
     repeatQueries: state.repeatQueries
 });
 

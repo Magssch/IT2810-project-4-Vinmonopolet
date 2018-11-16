@@ -19,7 +19,8 @@ class Query extends Component {
     render() {
         return (
             <Form.Dropdown placeholder={this.props.placeholder} fluid search selection style={this.props.style}
-                           name={this.props.name} options={this.parseOptions()} onChange={this.handleChange}/>
+                           name={this.props.name} options={this.parseOptions()} onChange={this.handleChange}
+                           id ={`query-${this.props.name}`}/>
         );
     }
 }

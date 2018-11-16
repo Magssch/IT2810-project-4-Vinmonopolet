@@ -44,9 +44,9 @@ export const setSorting = sorting => dispatch => {
 };
 
 // Set a specific field of an entry in items
-export const setField = (index, field, val) => ({
+export const setField = (index, field, value) => ({
     type: AppActionTypes.SET_FIELD,
-    payload: { index: index, field: field, val: val }
+    payload: { index: index, field: field, value: value }
 });
 
 // Toggle display of Modal-component
@@ -54,6 +54,19 @@ export const toggleModal = (index) => ({
     type: AppActionTypes.TOGGLE_MODAL,
     payload: { index: index }
 });
+
+// Fetch items (with axios) from database and dispatch to updateItems.
+export const incrementField = url => {
+    console.log(url); // TODO REMOVE DEBUG
+    return (dispatch) => {
+        return axios.put(url)
+            .then(
+                response => {dispatch(updateItems(response.data.docs));console.log("dispatching")} // TODO REMOVE DEBUG
+            )
+            .catch(error => {
+                console.log('Feil');console.log(error); } );
+    };
+};
 
 // Fetch items (with axios) from database and dispatch to updateItems.
 export const fetchItems = url => {
