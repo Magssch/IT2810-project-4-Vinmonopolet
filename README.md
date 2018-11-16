@@ -98,6 +98,7 @@ resultater gjør man en ny get med page=page+1
 Mappestrukturen i frontend-delen av prosjektet er som følger, `/client/src`:
 ```
 └───client
+    │───__tests__
     ├───actions
     ├───components
     │   ├───BarChart
@@ -183,9 +184,11 @@ Cypress-testfilene ligger på følgende sted i prosjektmappen:
 (`search_query_spec.js` og `navigation_spec.js` er testene av interesse)
 
 ### Jest / Enzyme
- yarn add --dev enzyme
- npm i --save-dev enzyme enzyme-adapter-react-16
- react-addons-test-utils
+For å hjelpe oss med vårt utvalg av systematiske enhetstester har vi benytet oss av Jest.
+For å vise at vi behersker systematisk enhetstesting har vi derfor lagt vekt på å teste komponenter
+som ikke inneholder andre komponenter igjen. Alle våre enhetstester ligger lokaliser i `src` ->
+`__tests__`. Her har vi implementert både enhetstester og snapshot-tester.
+
 
 ### Mocha
 
