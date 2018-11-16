@@ -1,29 +1,23 @@
 import React, { Component } from 'react';
-import {Line} from 'react-chartjs-2';
+import {Doughnut} from 'react-chartjs-2';
 
 
-class LineChart extends Component {
+class DoughnutChart extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            chartData: props.chartData,
-        }
-    }
-
+    // Standardrops in case no props are sent into the component
     static defaultProps = {
         displayTitle: true,
         displayLegend: true,
         legendPosition: 'right',
         topText: 'data',
-    }
+    };
 
     render() {
 
         return(
             <div className="chart">
-                <Line
-                    data={this.state.chartData}
+                <Doughnut
+                    data={this.props.chartData}
                     options={{
                         title: {
                             display: 'Number of units',
@@ -41,4 +35,4 @@ class LineChart extends Component {
 
 }
 
-export default LineChart;
+export default DoughnutChart;

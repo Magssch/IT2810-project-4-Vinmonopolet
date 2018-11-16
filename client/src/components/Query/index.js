@@ -11,14 +11,15 @@ class Query extends Component {
         this.props.onChange({name, value});
 
     parseOptions = () => {
-        let optionArray = [];
-        this.props.options.map(option => optionArray.push({key: option, value: option, text: option}));
+        let optionArray = [{key: (-1), value: null, text: this.props.placeholder}];
+        this.props.options.map((option, i) => optionArray.push({key: i, value: option, text: option}));
         return optionArray;
     };
 
     render() {
         return (
-            <Form.Dropdown placeholder={this.props.placeholder} fluid search selection name={this.props.name} options={this.parseOptions()} onChange={this.handleChange}  />
+            <Form.Dropdown placeholder={this.props.placeholder} fluid search selection style={this.props.style}
+                           name={this.props.name} options={this.parseOptions()} onChange={this.handleChange}/>
         );
     }
 }

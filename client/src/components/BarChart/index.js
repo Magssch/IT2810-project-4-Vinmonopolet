@@ -4,26 +4,20 @@ import {Bar} from 'react-chartjs-2';
 
 class BarChart extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            chartData: props.chartData,
-        }
-    }
-
+    // Standardrops in case no props are sent into the component
     static defaultProps = {
         displayTitle: true,
         displayLegend: true,
         legendPosition: 'right',
         topText: 'data',
-    }
+    };
 
     render() {
 
         return(
             <div className="chart">
                 <Bar
-                    data={this.state.chartData}
+                    data={this.props.chartData}
                     options={{
                         title: {
                             display: 'Number of units',
