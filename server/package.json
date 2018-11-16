@@ -10,7 +10,7 @@
     "webserver": "NODE_ENV=mongodb://it2810-46.idi.ntnu.no:27017/prosjekt4 nodemon --exec babel-node server.js",
     "test": "NODE_ENV=mongodb://it2810-46.idi.ntnu.no:27017/test nyc mocha --exit --compilers js:@babel/register --timeout 10000 ",
     "start": "node server.js",
-    "build": "babel src -d dist"
+    "build": "babel server.js -d dist"
   },
   "repository": {
     "type": "git",
