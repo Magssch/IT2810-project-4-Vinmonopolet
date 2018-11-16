@@ -2,8 +2,8 @@
 #### Magnus Schjølberg, Åsmund Haugse, Viktor Solberg
 
 ## Overordnet beskrivelse av prosjektet
-Informasjon om Vinmonopolets produkter er fritt tilgjengelig for bruk i egne tjenester.
-Vi har i denne oppgaven derfor benyttet oss av deres produktdatabase, hentet ut alle produkter
+Informasjon om Vinmonopolets produkter ligger fritt tilgjengelig for bruk i egne tjenester.
+Vi har i denne oppgaven derfor benyttet oss av deres produktdatabase fra https://www.vinmonopolet.no/datadeling, hentet ut alle produkter
 og lagt disse inn i vår egen database som kjører på NTNU sine servere. 
 
 Vi har både trimmet bort
@@ -197,6 +197,7 @@ Cypress-testfilene ligger på følgende sted i prosjektmappen:
 │   │   ├───integration
 │   │   │   │
 │   │   │   ├───navigation_spec.js
+│   │   │   ├───put_request_spec.js
 │   │   │   └───search_query_spec.js
 │   │   │   
 │   │   ├───fixtures
@@ -207,7 +208,7 @@ Cypress-testfilene ligger på følgende sted i prosjektmappen:
 └───server
 
 ```
-(`search_query_spec.js` og `navigation_spec.js` er testene av interesse)
+(`search_query_spec.js`, `put_request_spec.js` og `navigation_spec.js` er testene av interesse)
 
 ### Jest / Enzyme
 For å hjelpe oss med vårt utvalg av systematiske enhetstester har vi benytet oss av Jest.
