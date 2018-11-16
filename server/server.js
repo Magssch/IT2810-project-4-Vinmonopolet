@@ -47,7 +47,7 @@ app.use((err,req,res,next) => {
   console.error(err.stack)
   res.sendFile(path.join(__dirname,'../public/500.html'))
 })
-var PORT = 6000;
+var PORT = 12000;
 
 // startServer();
 app.listen(PORT, () => console.info(`Server has started on ${PORT}`));

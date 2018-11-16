@@ -1,0 +1,295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly: lager 1`] = `
+<tr
+  className=""
+  style={
+    Object {
+      "cursor": "pointer",
+    }
+  }
+>
+  <td
+    className="center aligned"
+    onClick={[Function]}
+  >
+    <img
+      alt="Icon"
+      className="item-icon"
+      src="../resources/beericon.png"
+    />
+  </td>
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  >
+    lager
+  </td>
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  >
+    <b
+      style={
+        Object {
+          "color": "rgba(89, 204, 22, NaN)",
+        }
+      }
+    >
+      NaN
+    </b>
+  </td>
+  <td
+    className="center aligned"
+  >
+    <div
+      style={
+        Object {
+          "overflow": "hidden",
+        }
+      }
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs down outline icon"
+        onClick={[Function]}
+      />
+      <b
+        style={
+          Object {
+            "color": "#59cc16",
+          }
+        }
+      >
+        NaN
+      </b>
+      <i
+        aria-hidden="true"
+        className="thumbs up outline icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "marginLeft": "5px",
+          }
+        }
+      />
+    </div>
+  </td>
+</tr>
+`;
+
+exports[`renders correctly: øl 1`] = `
+<tr
+  className=""
+  style={
+    Object {
+      "cursor": "pointer",
+    }
+  }
+>
+  <td
+    className="center aligned"
+    onClick={[Function]}
+  >
+    <img
+      alt="Icon"
+      className="item-icon"
+      src="../resources/beericon.png"
+    />
+  </td>
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  >
+    øl
+  </td>
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  >
+    <b
+      style={
+        Object {
+          "color": "rgba(89, 204, 22, NaN)",
+        }
+      }
+    >
+      NaN
+    </b>
+  </td>
+  <td
+    className="center aligned"
+  >
+    <div
+      style={
+        Object {
+          "overflow": "hidden",
+        }
+      }
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs down outline icon"
+        onClick={[Function]}
+      />
+      <b
+        style={
+          Object {
+            "color": "#59cc16",
+          }
+        }
+      >
+        NaN
+      </b>
+      <i
+        aria-hidden="true"
+        className="thumbs up outline icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "marginLeft": "5px",
+          }
+        }
+      />
+    </div>
+  </td>
+</tr>
+`;
+
+exports[`snapshot-test: vin 1`] = `
+<tr
+  className=""
+  style={
+    Object {
+      "cursor": "pointer",
+    }
+  }
+>
+  <td
+    className="center aligned"
+    onClick={[Function]}
+  >
+    <img
+      alt="Icon"
+      className="item-icon"
+      src="../resources/wineicon.png"
+    />
+  </td>
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  >
+    vin
+  </td>
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  />
+  <td
+    className=""
+    onClick={[Function]}
+  >
+    <b
+      style={
+        Object {
+          "color": "rgba(89, 204, 22, NaN)",
+        }
+      }
+    >
+      NaN
+    </b>
+  </td>
+  <td
+    className="center aligned"
+  >
+    <div
+      style={
+        Object {
+          "overflow": "hidden",
+        }
+      }
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs down outline icon"
+        onClick={[Function]}
+      />
+      <b
+        style={
+          Object {
+            "color": "#59cc16",
+          }
+        }
+      >
+        NaN
+      </b>
+      <i
+        aria-hidden="true"
+        className="thumbs up outline icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "marginLeft": "5px",
+          }
+        }
+      />
+    </div>
+  </td>
+</tr>
+`;

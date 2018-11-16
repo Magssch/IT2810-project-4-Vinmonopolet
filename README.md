@@ -61,7 +61,10 @@ vil grafen om smakssammensetning være blank.
 
 ### Cypress
 
-### Jest
+### Jest / Enzyme
+ yarn add --dev enzyme
+ npm i --save-dev enzyme enzyme-adapter-react-16
+ react-addons-test-utils
 
 ### Mocha
 
