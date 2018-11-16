@@ -1,8 +1,10 @@
 import express from 'express';
 import ProductModel from '../models/product.model';
+import cors from 'cors';
 
 const router = express.Router()
 
+router.use(cors());
   // Allow client to fetch data
   router.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*'); // Can change * to allow request from specific clients
