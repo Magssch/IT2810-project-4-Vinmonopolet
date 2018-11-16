@@ -90,7 +90,7 @@ class AppContent extends Component {
                     </Form.Group>
                 </Form>
                 <div>
-                    <ListView items={this.props.items} onSort={this.handleSort}/>
+                    <ListView onSort={this.handleSort}/>
                     <br/>
                     <Loader active={this.props.isLoading} inline='centered' />
                 </div>
@@ -103,7 +103,6 @@ class AppContent extends Component {
 // Redux-props for accessing state and dispatching actions.
 const mapState = state => ({
     search_query: state.search_query,
-    items: state.items,
     isLoading: state.isLoading,
     sorting: state.sorting,
     limit: state.limit,

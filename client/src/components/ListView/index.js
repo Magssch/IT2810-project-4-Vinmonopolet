@@ -101,7 +101,7 @@ class ListView extends Component {
                                 <Table.HeaderCell style={{width: "12%"}} />
                             </Table.Row>
                         </Table.Header>
-                        <Table.Body>
+                        <Table.Body className='db-result'>
                             {
                                 // Generates rows via functional syntax
                                 this.props.items.map(
@@ -134,6 +134,7 @@ const mapState = state => ({
     sorting: state.sorting,
     modalOpen: state.modalOpen,
     index: state.index,
+    items: state.items
 });
 
 const mapDispatch = dispatch => ({
