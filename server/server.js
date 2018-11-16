@@ -19,7 +19,7 @@ app.use((req,res,next) => {
 });
 
 //lokalt:
-const server=process.env.MONGODB_IDI_URI;
+const server=process.env.NODE_ENV;
 
 //Connect to the database(only done once)
 //mongoose.connect(`mongodb://${user}:${password}@${server}/${database}`)
@@ -53,3 +53,4 @@ var PORT = 6000;
 app.listen(PORT, () => console.info(`Server has started on ${PORT}`));
 
 //here
+export default server;
