@@ -78,8 +78,6 @@ class ListView extends Component {
 
     render() {
 
-            console.log(this.props.items);
-
         // Shortcuts for sorting
         let direction = this.props.sorting.direction, column = this.props.sorting.column;
 

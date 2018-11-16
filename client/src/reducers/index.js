@@ -27,7 +27,6 @@ export default function rootReducer(state, action) {
 
     switch (action.type) {
         case AppActionTypes.SYNC_NEW_SEARCH_QUERY:
-            //console.log("NEWQUERY");
             return {
                 ...state,
                 limit: defaultState.limit,
@@ -41,10 +40,6 @@ export default function rootReducer(state, action) {
             };
 
         case AppActionTypes.UPDATE_ITEMS:
-            /*console.log(action.payload.items);
-            console.log("statelen:"+state.items.length);
-            console.log("actionlen:"+action.payload.items.length);*/ // TODO REMOVE DEBUG
-
             let repeatQueries = state.repeatQueries;
 
             let newState = !state.newQuery ? state.items.concat(action.payload.items) : action.payload.items;
@@ -53,7 +48,6 @@ export default function rootReducer(state, action) {
             if(isEqual(state.items , newState)  && !state.newQuery) {
                 repeatQueries++;
             }
-            console.log(state.limit);
             return {
                 ...state,
                 repeatQueries: repeatQueries,
@@ -63,7 +57,6 @@ export default function rootReducer(state, action) {
             };
 
         case AppActionTypes.SET_SORTING:
-            //console.log(action.payload.sorting);
             return {
                 ...state,
                 repeatQueries: defaultState.repeatQueries,
@@ -73,7 +66,6 @@ export default function rootReducer(state, action) {
             };
 
         case AppActionTypes.LOAD_MORE_ITEMS:
-            //console.log("loading "+(state.limit+10)+" items");
             return {
                 ...state,
                 isLoading: true,
