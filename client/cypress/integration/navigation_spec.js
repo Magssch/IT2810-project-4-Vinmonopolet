@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
-describe('Navigate', () => {
-    it('navigates the page, testing Modal-component and dynamic loading by scrolling to bottom', () => {
+describe('Load more items', () => {
+    it('Scrolls to bottom of page, triggering display of more items', () => {
 
         // visit 'baseUrl'
         cy.visit('/');
@@ -19,12 +19,18 @@ describe('Navigate', () => {
         cy.wait(2000);
 
         // check that correct amount of items are loaded (should be 20 as it loads in clusters of 10).
-        cy.get('.db-result').find('tr').should('have.length', 20)
+        cy.get('.db-result').find('tr').should('have.length', 20);
+    });
+});
 
-        // click on an item, triggering Modal-component
-        cy.get('.db-item').contains('BrewDog Nanny State').click();
 
-        // check if correct item information is displayed
-        cy.contains('Kremet og saftig. preg av blomst og urter. tydelig humlebitter ettersmak.');
+describe('Navigate', () => {
+    it('Navigates the page, clicking an item to get Modal view (advanced view)', () => {
+
+// click on an item, triggering Modal-component
+cy.get('.db-item').contains('BrewDog Nanny State').click();
+
+// check if correct item information is displayed
+cy.contains('Kremet og saftig. preg av blomst og urter. tydelig humlebitter ettersmak.');
     });
 });
