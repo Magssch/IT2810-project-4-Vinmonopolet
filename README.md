@@ -39,6 +39,25 @@ vil grafen om smakssammensetning være blank.
 
 ## Backend
 
+
+### Mappestruktur
+Mappestrukturen i backend-delen av prosjektet er som følger, `/server`:
+```
+├───controllers
+│   └───productCtrl.js
+├───models
+│   └───product.model.js
+├───routes
+│   └───product.js
+├───test
+│   └───product.test.js
+├───.env
+├───AddCategory.txt
+├───server.js
+├───viktige_greier.txt
+
+```
+
 Hvordan bruke REST url:
 ### Generelt
 Basert på hvordan du skriver urlen kan du velge hvilket søk du vil gjøre, hva det skal sorteres på og om det skal være ascending eller descending.
@@ -74,6 +93,33 @@ resultater gjør man en ny get med page=page+1
 
 ## Frontend
 
+### Mappestruktur
+Mappestrukturen i frontend-delen av prosjektet er som følger, `/client/src`:
+```
+├───actions
+├───components
+│   ├───BarChart
+│   ├───DoughnutChart
+│   ├───LineChart
+│   ├───ListView
+│   │   └───ListItem
+│   ├───ModalChart
+│   ├───PieChart
+│   ├───Query
+│   └───Search
+├───reducers
+├───store
+├───App.css
+├───App.js
+├───index.css
+├───index.js
+├───serviceWorker.js
+├───uniqueData.json
+```
+Samtlige undermapper inneholder en `index.js`-fil, i tillegg til et par enkelte css-filer i noen av komponentene.
+`uniqueData.json` inneholder json-objekter med alternativene for de forskjellige søkekategoriene.
+`actions`, `reducers` og `store` er mappene vi bruker til Redux, med veldig enkelt oppsett.
+I tillegg har vi en `resources`-mappe i `public` som inneholder ikoner til tabellen.
 ### Visualisering av data
 
 ### react-responsive-modal
@@ -114,6 +160,25 @@ For å vise grunnleggende ferdigheter i denne typen testing har vi derfor laget 
 Du kan kjøre cypress ved å først `cd client` og deretter skrive `npm run cypress`. Du vil da finne to tester, `navigation_spec.js` og `search_query_spec.js` som henholdsvis tester navigering på siden og søking i databasen.
 Disse kan du kjøre ved å trykke deg inn på de og du skal deretter få opp et nettleser-vindu hvor disse testene kjøres.
 Cypress gir også en tidslinje for testingen i venstre sidebar, du kan trykke på de forskjellige hendelsene for å se hva testen så og søkte etter i det tidspunktet.
+
+Cypress-testfilene ligger på følgende sted i prosjektmappen:
+```
+├───client
+│   ├───cypress
+│   │   ├───fixtures
+│   │   ├───integration
+│   │   │   │
+│   │   │   ├───navigation_spec.js
+│   │   │   └───search_query_spec.js
+│   │   │   
+│   │   ├───plugins
+│   │   └───support
+│   ├───public
+│   └───src
+└───server
+
+```
+(`search_query_spec.js` og `navigation_spec.js` er testene av interesse)
 
 ### Jest
 
