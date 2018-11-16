@@ -34,8 +34,12 @@ class ListItem extends Component {
     render() {
         return (
                 <Table.Row className='db-item' style={{cursor: "pointer"}}>
-                    <Table.Cell className='db-item-field-image' onClick={() => this.handleChange()} textAlign={"center"}>
-                        <img className="item-icon" src={`../resources/${this.getIconType()}icon.png`} alt={"Icon"}/>
+                    <Table.Cell className='db-item-field-image'
+                                onClick={() => this.handleChange()} textAlign={"center"}>
+                        <div className={"image-container"}>
+                            <img className="item-icon" src={`../resources/${this.getIconType()}icon.png`}
+                                alt={"Icon"} />
+                        </div>
                     </Table.Cell>
                     <Table.Cell className='db-item-field-name' onClick={() => this.handleChange()} >{this.props.name}</Table.Cell>
                     <Table.Cell className='db-item-field-type' onClick={() => this.handleChange()} >{this.props.type}</Table.Cell>
