@@ -19,7 +19,7 @@ exports[`renders correctly: lager 1`] = `
       <img
         alt="Icon"
         className="item-icon"
-        src="../resources/beericon.png"
+        src={require("../resources/beericon.png")}
       />
     </div>
   </td>
@@ -121,7 +121,7 @@ exports[`renders correctly: øl 1`] = `
       <img
         alt="Icon"
         className="item-icon"
-        src="../resources/beericon.png"
+        src={require("../resources/beericon.png")}
       />
     </div>
   </td>
@@ -223,7 +223,7 @@ exports[`snapshot-test: vin 1`] = `
       <img
         alt="Icon"
         className="item-icon"
-        src="../resources/wineicon.png"
+        src={require("../resources/wineicon.png")}
       />
     </div>
   </td>
