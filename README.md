@@ -219,9 +219,9 @@ som ikke inneholder andre komponenter igjen. Alle våre enhetstester ligger loka
 på korrekt vis, samt at propsene vi sender inn i komponentene oppfører seg på korrekt måte.
 
 
-### Mocha
+### Mocha og Chai (Og Istanbul)
+Mocha er et testrammeverk som tilrettelegger for enklere asynkron testing. Mocha kjører testene sine serielt, og vi har brukt det i lag med Chai for å kunne bruke Chai sitt 'assertion' bibliotek. Det ga oss veldig leselige tester for backenden. Vi har også brukt Istanbul for å se test-coverage. 
 
-### Chai
 
 
 ## Kilder
