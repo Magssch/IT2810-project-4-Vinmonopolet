@@ -90,15 +90,12 @@ export default function rootReducer(state, action) {
         case AppActionTypes.SET_FIELD:
             return {
                 ...state,
-                items: {
-                    ...state.items,
-                    [action.payload.index]: {
-                        ...state.items[action.payload.index],
-                        [action.payload.field]: action.payload.value
-
-                    }
-                }
+                items: state.items.map((item, i) => i === action.payload.index ? {
+                    ...item,
+                    [action.payload.field]: state.items[action.payload.index][action.payload.field]+1
+                    } : item)
             };
+
         default:
             return state;
     }
