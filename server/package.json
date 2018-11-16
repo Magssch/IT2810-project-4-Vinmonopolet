@@ -6,7 +6,7 @@
   "author": "Åsmund",
   "license": "ISC",
   "scripts": {
-    "webserver": "NODE_ENV=MONGODB_IDI_URI nodemon --exec babel-node server.js",
+    "webserver": "NODE_ENV=mongodb://it2810-46.idi.ntnu.no:27017/prosjekt4 nodemon --exec babel-node server.js",
     "test": "NODE_ENV=mongodb://it2810-46.idi.ntnu.no:27017/prosjekt4test mocha --compilers js:@babel/register --timeout 10000 ",
     "start": "node server.js"
   },
