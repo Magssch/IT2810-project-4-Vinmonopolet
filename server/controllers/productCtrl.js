@@ -1,7 +1,4 @@
-//reference customer model:
-import express from 'express';
 import ProductModel from '../models/product.model';
-import CustomerModel from "../models/customer.model";
 
 
 class ProductCtrl {

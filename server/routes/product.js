@@ -1,24 +1,14 @@
-//reference customer model:
 import express from 'express';
 import ProductModel from '../models/product.model';
 
-const router = express.Router();
-
-// GET by param, if param unspecified it returns all
-/*
-Specifying the sortBy parameter allows you to chose how the list is sorted:
-  Volum, Pris, Varenummer, Literpris, Fylde, Friskhet, Bitterhet, Sodme, Argang(Noen har ikke Årgang),
-  Alkohol, Sukker, APK
-Specifying the respective keys allows for searching for specific products, for example: Land=Italia
- Allowed: Varenavn, Varetype, land, Distrikt
-Using && between keys allows for specifying several types
- */
+const router = express.Router()
 
   // Allow client to fetch data
   router.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*'); // Can change * to allow request from specific clients
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
+      res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+      next();
 });
 
 router.get('/product',(req, res) => {
@@ -34,7 +24,7 @@ router.get('/product',(req, res) => {
     content.Varenavn = {$regex: RegExp(req.query.Varenavn), $options:'-i'};
   }
   if (req.query.Pris) {
-    content.Pris = {$regex: RegExp(req.query.Pris), $options:'-i'};
+    content.Pris = req.query.Pris;
   }
   if (req.query.Varetype) {
     content.Varetype = {$regex: RegExp(req.query.Varetype), $options:'-i'};
@@ -46,15 +36,17 @@ router.get('/product',(req, res) => {
     content.Distrikt = {$regex: RegExp(req.query.Distrikt), $options:'-i'};
   }
   if (req.query.Alkohol) {
-    content.Alkohol = {$regex: RegExp(req.query.Alkohol), $options:'-i'};
+    content.Alkohol = req.query.Alkohol;
   }
   if (req.query.Argang) {
-    content.Argang = {$regex: RegExp(req.query.Argang), $options:'-i'};
+    content.Argang = req.query.Argang;
   }
   if (req.query.Volum) {
-    content.Volum = {$regex: RegExp(req.query.Volum), $options:'-i'};
+    content.Volum = req.query.Volum;
   }
-  
+  if (req.query.Kategori) {
+    content.Kategori = req.query.Kategori;
+  }
 
   ProductModel.paginate(content,{
     page: pages,
@@ -67,5 +59,51 @@ router.get('/product',(req, res) => {
       res.status(500).json(err);
     })
 });
+
+// UPDATE
+router.put('/product',(req, res) => {
+
+  if(req.query.Liker) {
+    ProductModel.findOneAndUpdate({
+      Varenummer: req.query.Varenummer,
+    },{ $inc: {Liker :1 }})
+      .then(doc => {
+      res.json(doc)
+    })
+      .catch(err => {
+        res.status(500).json(err)
+      })
+    }
+  if(req.query.Misliker) {
+    ProductModel.findOneAndUpdate({
+      Varenummer: req.query.Varenummer,
+    },{ $inc: {Misliker :1 }})
+      .then(doc => {
+        res.json(doc)
+      })
+      .catch(err => {
+        res.status(500).json(err)
+      })
+  }
+});
+
+
+//Create a new product
+router.post('/product', (req,res) => {
+  //tell express what to do with the json data
+  // req.body
+
+  let model = new ProductModel(req.body)
+  model.save()
+    .then(doc => {
+      if(!doc || doc.length === 0) {
+        return res.status(500).send(doc)
+      }
+      res.status(201).send(doc)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
 
 export default router;
