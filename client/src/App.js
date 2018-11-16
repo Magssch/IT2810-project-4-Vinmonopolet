@@ -38,12 +38,14 @@ class AppContent extends Component {
 
     // Generates REST-query based on current search query and sorting in Redux-state
     generateQuery = () => {
+        console.log(this.props.newQuery);
+        console.log(this.props.limit);
         return "http://localhost:12000/Product?" +
             ((!this.props.search_query.name) ? '' : `&Varenavn=${this.props.search_query.name}`) +
             ((!this.props.search_query.volume) ? '' : `&Volum=${this.props.search_query.volume}`) +
             ((!this.props.search_query.country) ? '' : `&Land=${this.props.search_query.country}`) +
             ((!this.props.search_query.type) ? '' : `&Varetype=${this.props.search_query.type}`) +
-            ((!this.props.limit) ? '' : `&limit=${this.props.limit}`) +
+            (this.props.newQuery && this.props.limit > 10 ? `&limit=${this.props.limit}` : `&page=${this.props.limit/10}&limit=10`) +
             ((!this.props.sorting.column) ? '&sorting=Pris' : `&sorting=${this.props.sorting.column}`) +
             ((this.props.sorting.direction === 'ascending') ? '&order=asc' : '&order=desc');
     };
@@ -104,6 +106,7 @@ const mapState = state => ({
     isLoading: state.isLoading,
     sorting: state.sorting,
     limit: state.limit,
+    newQuery: state.newQuery,
     repeatQueries: state.repeatQueries
 });
 
