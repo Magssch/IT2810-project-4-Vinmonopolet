@@ -16,8 +16,8 @@ app.use((req,res,next) => {
 });
 
 //lokalt:
- const server=process.env.NODE_ENV;
-//const server = 'mongodb://it2810-46.idi.ntnu.no:27017/prosjekt4'
+// const server=process.env.NODE_ENV;
+const server = 'mongodb://it2810-46.idi.ntnu.no:27017/prosjekt4'
 
 //Connect to the database(only done once)
 //mongoose.connect(`mongodb://${user}:${password}@${server}/${database}`)

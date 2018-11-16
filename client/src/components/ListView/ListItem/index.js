@@ -54,11 +54,11 @@ class ListItem extends Component {
                     </Table.Cell>
                     <Table.Cell className='db-item-field-rating' textAlign={'center'}>
                         <div style={{overflow: "hidden"}}>
-                            <Icon name={"thumbs down outline"} onClick={() => this.handleRating(false)}/>
-                            <b style={
+                            <Icon name={"thumbs down outline"} id="thumbs-down" onClick={() => this.handleRating(false)}/>
+                            <b id="score" style={
                                 (this.props.likes-this.props.dislikes) < 0 ? {color: "#ce3a1c"} : {color: "#59cc16"}
                             }>{(this.props.likes-this.props.dislikes)}</b>
-                            <Icon name={"thumbs up outline"} onClick={() => this.handleRating(true)}
+                            <Icon name={"thumbs up outline"} id="thumbs-up" onClick={() => this.handleRating(true)}
                                   style={{marginLeft: "5px"}}/>
                         </div>
                     </Table.Cell>

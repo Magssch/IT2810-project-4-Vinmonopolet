@@ -146,6 +146,11 @@ For å minske antall overflødige spørringer til databasen har vi benyttet oss 
 Dette kommer godt til nytte blant annet i vårt on-the-fly søkefelt hvor state må oppdateres før en ny spørring kan kjøres. Dette førte til at de ble gjort en spørring for hvert tastetrykk, hvor flere av disse spørringene også ble identiske.
 Debounce-funksjonen medfører en liten delay på 300ms men vi mener dette er et rimelig kompromiss ikke bare for å spare serverkapasitet men også for å øke ytelsen på siden.
 
+Videre har vi valgt å kun laste inn ti elementer av gangen, for å ytterligere spare serverkapasitet. når brukeren blar ned til bunnen av siden vil det automatisk lastes inn ti nye ytterligere elementer, eventuelt færre dersom det ikke finnes flere resultater å vise.
+I stedet for å laste inn hele resultatsettet på nytt når man blar ned på siden har vi valgt å kontinuerlig lagre resultatsettene i state, og deretter pushe ytterligere elementer inn i eksisterende state. Dette hjelper også på ytelsen og minsker belastningen på server.
+
+For å gjøre sortering av datasettet enkelt har vi benyttet oss av Semantic UIs innebygde sorterings-grensesnitt for tabeller. Ved å trykke på de forskjellige feltene i header-raden kan man velge om man vil ha en stigende eller synkende sortering på dette feltet.
+Denne informasjonen sendes så via REST til databasen, som gir oss det korrekte sorterte resultatsettet tilbake. Fordelen med å gjøre sortering i backend er at påfølgende elementer som lastes inn også vil være ferdig sorterte, men en ulempe er derimot at hele det innlastede datasettet må lastes inn på nytt i state.
 ### Semantic UI
 Som UI-bibliotek har vi valgt React-implementasjonen av Semantic UI. Vi har valgt å bruke dette ettersom vi hadde litt kjennskap til biblioteket fra i før, i tillegg til at det har veldig mye ferdig innebygd funksjonalitet.
 
