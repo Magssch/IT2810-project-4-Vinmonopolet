@@ -92,8 +92,14 @@ For å gjøre tilstand tilgjengelig til de forskjellige komponentene pakker man 
 Redux Thunk er en såkalt "middleware" som lar "action creators" returnere funksjoner i stedet for objekter. Dette er nyttig for å gjøre asynkrone spørringer, som når vi henter fra databasen via REST og axios. 
 Ved å returnere en funksjon i stedet for et objekt kan vi kort fortalt tillate forsinkelse i innhenting av verdiene som skal settes til state.
 
+### Søking, sortering of filtrering
+I frontend lar vi brukeren gjøre søk i databasen enten ved å søke på navn, velge blant ulike volum, land, kategorier, eller en kombinasjon av disse. Disse søkekriteriene lagres i state og oppdateres on-the-fly ettersom brukeren skriver inn søketekst eller velger blant alternativer.
+For å minske antall overflødige spørringer til databasen har vi benyttet oss av debounce-funksjonen i lodash som grupperer flere spørringer sammen og eliminerer identiske spørringer.
+Dette kommer godt til nytte blant annet i vårt on-the-fly søkefelt hvor state må oppdateres før en ny spørring kan kjøres. Dette førte til at de ble gjort en spørring for hvert tastetrykk, hvor flere av disse spørringene også ble identiske.
+Debounce-funksjonen medfører en liten delay på 300ms men vi mener dette er et rimelig kompromiss ikke bare for å spare serverkapasitet men også for å øke ytelsen på siden.
+
 ### Semantic UI
-Som UI-bibliotek har vi valgt React-implementasjonen av Semantic UI.
+Som UI-bibliotek har vi valgt React-implementasjonen av Semantic UI. Vi har valgt å bruke dette ettersom vi hadde litt kjennskap til biblioteket fra i før, i tillegg til at det har veldig mye ferdig innebygd funksjonalitet.
 
 
 ### evt andre ting
