@@ -13,12 +13,13 @@ app.use(productRoute);
 app.use(cors());
 
 
-app.use((req,res,next) => {  
+app.use((req,res,next) => {
   console.log(`${new Date().toString()} => ${req.originalUrl}`,req.body);
   next()
 });
 
 //lokalt:
+// const server=process.env.NODE_ENV;
 const server = 'mongodb://it2810-46.idi.ntnu.no:27017/prosjekt4'
 
 //Connect to the database(only done once)
@@ -42,7 +43,7 @@ app.use((req,res,next) => {
 })
 
 // Handler for 500
-app.use((err,req,res,next) => { 
+app.use((err,req,res,next) => {
   console.error(err.stack)
   res.sendFile(path.join(__dirname,'../public/500.html'))
 })
