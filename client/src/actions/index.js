@@ -57,11 +57,10 @@ export const toggleModal = (index) => ({
 
 // Fetch items (with axios) from database and dispatch to updateItems.
 export const fetchItems = url => {
-    console.log(url); // TODO REMOVE DEBUG
     return (dispatch) => {
         return axios.get(url)
             .then(
-                response => {dispatch(updateItems(response.data.docs));console.log("dispatching")} // TODO REMOVE DEBUG
+                response => dispatch(updateItems(response.data.docs))
             )
             .catch(error => {
                 console.log('Feil');console.log(error); } );
