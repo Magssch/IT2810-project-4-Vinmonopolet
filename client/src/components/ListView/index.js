@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ListItem from './ListItem/index';
 import { Table } from 'semantic-ui-react';
 import './ListView.css';
-import {setSorting, setField, toggleModal} from "../../actions";
+import {setSorting, setField, toggleModal, incrementField} from "../../actions";
 import connect from "react-redux/es/connect/connect";
 import ModalChart from "../ModalChart";
 
@@ -28,9 +28,11 @@ class ListView extends Component {
 
     // Handler that is run upon giving a like or dislike on an item in ListItem.
     handleRating = (index, isLike) => {
-        console.log(this.props.items[index][(isLike ? 'Liker' : 'Misliker')]);  // TODO REMOVE DEBUG
-        this.props.set_field(index, (isLike ? 'Liker' : 'Misliker'),
-            this.props.items[index][(isLike ? 'Liker' : 'Misliker')]+1)
+        this.props.increment_field(
+            `http://localhost:12000/Product?Varenummer=${this.props.items[index].Varenummer}&${isLike ? 'Liker' : 'Misliker'}=True`
+        ).then(
+            this.props.set_field(this.props.items[index].Varenummer, (isLike ? 'Liker' : 'Misliker'), true)
+        );
     };
 
     // Handler that is run upon clicking an item / table entry. Toggles advanced view
@@ -39,7 +41,7 @@ class ListView extends Component {
 
     // Renders modal component. Checks if items are loaded before loading.
     renderModal() {
-        if(this.props.items.length > 0) {
+        if(this.props.items.length > 0 && this.props.items !== undefined) {
             let item = this.props.items[this.props.index];
             return(<ModalChart
                 // Is modal opened?
@@ -140,6 +142,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
     set_sorting: sorting => dispatch(setSorting(sorting)),
     set_field: (rating, isLike, val) => dispatch(setField(rating, isLike, val)),
+    increment_field: url => dispatch(incrementField(url)),
     toggle_modal: index => dispatch(toggleModal(index))
 });
 
