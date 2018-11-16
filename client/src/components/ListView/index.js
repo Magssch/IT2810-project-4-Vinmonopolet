@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import ListItem from './ListItem/index';
 import { Table } from 'semantic-ui-react';
 import './ListView.css';
-import {setSorting, setField, toggleModal, incrementField} from "../../actions";
+import {setSorting, setField, toggleModal} from "../../actions";
 import connect from "react-redux/es/connect/connect";
 import ModalChart from "../ModalChart";
+import axios from "axios";
 
 class ListView extends Component {
 
@@ -28,11 +29,15 @@ class ListView extends Component {
 
     // Handler that is run upon giving a like or dislike on an item in ListItem.
     handleRating = (index, isLike) => {
-        this.props.increment_field(
-            `http://localhost:12000/Product?Varenummer=${this.props.items[index].Varenummer}&${isLike ? 'Liker' : 'Misliker'}=True`
-        ).then(
-            this.props.set_field(this.props.items[index].Varenummer, (isLike ? 'Liker' : 'Misliker'), true)
-        );
+        axios.put(`http://localhost:12000/Product?Varenummer=${this.props.items[index].Varenummer}&${isLike ? 'Liker' : 'Misliker'}=True`
+            ).catch(error => {
+                console.log('Feil');console.log(error); } );
+                    //this.props.set_field(index, (isLike ? 'Liker' : 'Misliker'), true)
+                    /*this.props.set_sorting(this.props.sorting).then(()=>{
+                        this.props.onSort(); // Inform parent of sorting-action (async)
+                    });*/
+
+        this.props.set_field(index, isLike ? 'Liker' : 'Misliker', 1);
     };
 
     // Handler that is run upon clicking an item / table entry. Toggles advanced view
@@ -72,6 +77,9 @@ class ListView extends Component {
     }
 
     render() {
+
+            console.log(this.props.items);
+
         // Shortcuts for sorting
         let direction = this.props.sorting.direction, column = this.props.sorting.column;
 
@@ -142,7 +150,6 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
     set_sorting: sorting => dispatch(setSorting(sorting)),
     set_field: (rating, isLike, val) => dispatch(setField(rating, isLike, val)),
-    increment_field: url => dispatch(incrementField(url)),
     toggle_modal: index => dispatch(toggleModal(index))
 });
 

@@ -3,13 +3,18 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import productRoute from './routes/product'
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import cors from 'cors';
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(productRoute);
+app.use(customerRoute);
+app.use(cors());
 
-app.use((req,res,next) => { 
+
+app.use((req,res,next) => {  
   console.log(`${new Date().toString()} => ${req.originalUrl}`,req.body);
   next()
 });
@@ -26,7 +31,7 @@ mongoose.connect(server, { useNewUrlParser: true } )
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     next();
 });
 
