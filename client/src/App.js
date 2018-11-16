@@ -75,7 +75,7 @@ class AppContent extends Component {
 
         return (
             <div className="App">
-                <img className="App-logo" src={require("../resources/vinmonopolet.png")} alt={"Vinmonopolet"}/>
+                <img className="App-logo" src={require("./resources/vinmonopolet.png")} alt={"Vinmonopolet"}/>
                 <Form style={{width: "100%"}}>
                     <Form.Group>
                         <Search isLoading={this.props.isLoading} onChange={this.handleChange}/>
