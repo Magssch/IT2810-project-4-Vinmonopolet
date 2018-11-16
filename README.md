@@ -182,7 +182,10 @@ Cypress-testfilene ligger på følgende sted i prosjektmappen:
 ```
 (`search_query_spec.js` og `navigation_spec.js` er testene av interesse)
 
-### Jest
+### Jest / Enzyme
+ yarn add --dev enzyme
+ npm i --save-dev enzyme enzyme-adapter-react-16
+ react-addons-test-utils
 
 ### Mocha
 
