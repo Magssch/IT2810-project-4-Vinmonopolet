@@ -5,7 +5,7 @@ import ListView from './components/ListView';
 import Search from './components/Search';
 import Query from './components/Query';
 import { Form, Loader } from 'semantic-ui-react';
-import _, {debounce} from 'lodash';
+import {debounce} from 'lodash';
 import {fetchItems, syncSearchQuery, loadMoreItems} from './actions';
 
 // Fetch values for Query-fields. These are hard-coded in uniqueData.json
@@ -49,10 +49,8 @@ class AppContent extends Component {
     };
 
     // Handler that is run upon inputting new data into Query or Search components.
-    handleChange = ({ name, value }) => {
-        this.props.sync_query({name, value}).then(
-            debounce(() => this.props.fetch_items(this.generateQuery()), 1000));
-    };
+    handleChange = debounce(({ name, value }) => { this.props.sync_query({name, value}).then(
+            () => this.props.fetch_items(this.generateQuery()))}, 300);
 
     // Handler that is run upon sorting items in ListView
     handleSort = () => {
