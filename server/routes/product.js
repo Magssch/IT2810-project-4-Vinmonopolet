@@ -1,4 +1,3 @@
-//reference customer model:
 import express from 'express';
 import ProductModel from '../models/product.model';
 
@@ -8,6 +7,7 @@ const router = express.Router()
   router.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*'); // Can change * to allow request from specific clients
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     next();
 });
 

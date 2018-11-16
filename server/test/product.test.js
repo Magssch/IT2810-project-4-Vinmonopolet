@@ -8,6 +8,10 @@ let product = require('../models/product.model')
 chai.use(chaiHttp);
 let should = chai.should();
 
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
 let productToSend = {
    "_id":"5bec32af22fd990159ad4386",
    "Varenummer":1101,
@@ -42,13 +46,13 @@ let productToSend = {
  };
 
 describe('Products', () => {
-   /*
-   beforeEach((done) => { //Empty the database before every test
+   
+   before((done) => { //Empty the database before every test
       product.remove({}, (err) => {
          done();
       });
    });
-*/
+
 
    // GET all products in database
    describe('/GET product', () => {
@@ -61,8 +65,11 @@ describe('Products', () => {
             res.body.docs.length.should.be.eql(0);
          done();
          });
-      });;
-
+      });
+    });
+    
+    // POST new product to database
+    describe('/POST product', () => {
       it('it should create a new product', (done) => {
          chai.request(server)
          .post('/product')
@@ -70,28 +77,58 @@ describe('Products', () => {
          .end((err, res) => {
             res.should.have.status(201);
             res.body.should.be.a('object');
-            res.body.should.have.property('errors');
+            done();
          });
-         done();
       });
+    });
 
-      it('it should increment a like'), (done) => {
-         let amountOfLikes = null;
+
+    //PUT new amount of likes for a product
+    describe('/PUT product', () => { 
+      // Check current likes
+      it('it should get current amount of likes', (done) => {
          chai.request(server)
          .get('/product')
          .end((err, res) => {
-            res.should.have.status(200);
-            res.body.should.
-         })
-
-         chai.request(server)
-         .put('/product')
-         .end((err, res) => {
-            res.should.have.status(200);
+           res.should.have.status(200);
+           res.body.docs[0].Liker.should.be.eql(5799);
+           done();
          });
-      }
+        });
 
+        // Increase amount of likes
+        it('it should increment amount of likes by one', (done) => {
+          chai.request(server)
+          .put('/product?Varenummer=1101&Liker=True')
+          .send()
+          .end((err, res) => {
+            res.should.have.status(200);
+            chai.request(server)
+            .get('/product')
+            .end((err, res) => {
+            res.should.have.status(200);
+             res.body.docs[0].Liker.should.be.eql(5800);
+             done();
+            })
+        });
+      });
 
-   });
-
-});
+      // Decrease amount of likes
+      it('it should decrease amount of likes by one', (done) => {
+        chai.request(server)
+        .put('/product?Varenummer=1101&Misliker=True')
+        .send()
+        .end((err, res) => {
+        res.should.have.status(200);
+        chai.request(server)
+        .get('/product')
+        .end((err, res) => {
+        res.should.have.status(200);
+        res.body.docs[0].Liker.should.be.eql(5800);
+        done();
+        })
+      });
+    });
+  
+    });
+  });

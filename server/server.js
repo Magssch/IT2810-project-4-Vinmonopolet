@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
-import customerRoute from './routes/customer'
 import productRoute from './routes/product'
 import mongoose from 'mongoose';
 
@@ -9,7 +8,6 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(productRoute);
-app.use(customerRoute);
 
 app.use((req,res,next) => { 
   console.log(`${new Date().toString()} => ${req.originalUrl}`,req.body);
@@ -17,8 +15,8 @@ app.use((req,res,next) => {
 });
 
 //lokalt:
-// const server=process.env.NODE_ENV;
-const server = 'mongodb://it2810-46.idi.ntnu.no:27017/test'
+ const server=process.env.NODE_ENV;
+//const server = 'mongodb://it2810-46.idi.ntnu.no:27017/prosjekt4'
 
 //Connect to the database(only done once)
 //mongoose.connect(`mongodb://${user}:${password}@${server}/${database}`)
@@ -28,11 +26,10 @@ mongoose.connect(server, { useNewUrlParser: true } )
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     next();
 });
 
-app.use(customerRoute)
-app.use(productRoute)
 app.use(express.static('public'))
 
 
