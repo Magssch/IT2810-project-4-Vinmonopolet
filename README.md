@@ -98,6 +98,7 @@ resultater gjør man en ny get med page=page+1
 Mappestrukturen i frontend-delen av prosjektet er som følger, `/client/src`:
 ```
 └───client
+    │───__tests__
     ├───actions
     ├───components
     │   ├───BarChart
@@ -125,8 +126,25 @@ I tillegg har vi en `resources`-mappe i `public` som inneholder ikoner til tabel
 ### Visualisering av data
 
 ### react-responsive-modal
+For å hjelpe oss med struktureringen og visualiseringen av dataene som blir hentet ut av databasen har vi benyttet oss av
+flere tredjepartskomponenter, blant annet `react-responsive-modal`. Dette er et vindu som dukker opp ved klikk på en rad
+i tabellen over produkter som returneres fra databasen. Denne innstalleres ved hjelp av NPM slik:
+`npm install 'react-responsive-modal' --save`. Deretter importeres komponenten til prosjektet slik:
+`import Modal from 'react-responsive-modal';` Denne komponenten fungerer slik at du selv velger hvilke props du vil
+sende inn i den. De viktigste her er `open` og `onClose` som henholdsvis er en boolean som bestemmer om modal skal være
+synlig eller ei og en funksjon som vil kjøres når modalen lukkes. Videre kan man veve inn elementer i modalen
+ som kan ses på som dens barn. I vårt eksempel har vi vevd inn tekstelementer og react-chart-elementer.
 
 ### react-chart
+For å utvikle funksjonalitet for å vise dataene med grafer/figurer har vi valgt å implementere `react-chart`. Disse grafene
+er innvevd i `react-responsive-modal`-komponenten vi også benytter oss av. Denne komponenten kan innstalleres ved hjelp
+av NPM slik: `npm-install react-chartjs-2 chart.js --save`. Deretter importeres grafene til prosjektet slik:
+`import {Doughnut, Pie, Line, Bar} from 'react-chartjs-2';`. Man vil da ha fire forskjellige grafer å velge mellom.
+I vårt prosjekt har vi sett det som mest hensiktsmessig å benyttet oss av "Doughnut"- og "Bar"-grafen. Disse hjelper oss
+med å representere henholdsvis smakssammensetningen og antall "likes"/dislikes for hvert enkelt produkt. Disse komponentene
+brukes også ved å sende inn forskjellige props, men den absolutt viktigste er `data` da denne er påkrevd for grafen.
+Dette er den dataen du ønsker å representere ved hjelp av grafen. I vårt prosjekt har vi valgt å lage en egen komponent
+`ModalChart` som vever inn både Modal-komponenten og Doughnut- samt Bar-grafen.
 
 ### Redux
 Prosjektet bruker Redux for state management, i henhold til kravet. Redux lar oss ha en såkalt "single source of truth" i Redux Storen, hvor state/tilstanden til samtlige komponenter lagres.
@@ -154,8 +172,6 @@ Denne informasjonen sendes så via REST til databasen, som gir oss det korrekte 
 ### Semantic UI
 Som UI-bibliotek har vi valgt React-implementasjonen av Semantic UI. Vi har valgt å bruke dette ettersom vi hadde litt kjennskap til biblioteket fra i før, i tillegg til at det har veldig mye ferdig innebygd funksjonalitet.
 
-
-### evt andre ting
 
 
 ## Testing
@@ -187,7 +203,13 @@ Cypress-testfilene ligger på følgende sted i prosjektmappen:
 ```
 (`search_query_spec.js` og `navigation_spec.js` er testene av interesse)
 
-### Jest
+### Jest / Enzyme
+For å hjelpe oss med vårt utvalg av systematiske enhetstester har vi benytet oss av Jest.
+For å vise at vi behersker systematisk enhetstesting har vi derfor lagt vekt på å teste komponenter
+som ikke inneholder andre komponenter igjen. Alle våre enhetstester ligger lokalisert i `src` ->
+`__tests__`. Her har vi implementert både enhetstester og snapshot-tester som sjekker at komponentene rendres
+på korrekt vis, samt at propsene vi sender inn i komponentene oppfører seg på korrekt måte.
+
 
 ### Mocha
 

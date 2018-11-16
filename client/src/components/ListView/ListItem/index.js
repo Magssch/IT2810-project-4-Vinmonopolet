@@ -37,7 +37,7 @@ class ListItem extends Component {
                     <Table.Cell className='db-item-field-image'
                                 onClick={() => this.handleChange()} textAlign={"center"}>
                         <div className={"image-container"}>
-                            <img className="item-icon" src={`../resources/${this.getIconType()}icon.png`}
+                            <img className="item-icon" src={require(`../resources/${this.getIconType()}icon.png`)}
                                 alt={"Icon"} />
                         </div>
                     </Table.Cell>
