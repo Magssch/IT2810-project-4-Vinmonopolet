@@ -2,17 +2,7 @@
 import express from 'express';
 import ProductModel from '../models/product.model';
 
-const router = express.Router();
-
-// GET by param, if param unspecified it returns all
-/*
-Specifying the sortBy parameter allows you to chose how the list is sorted:
-  Volum, Pris, Varenummer, Literpris, Fylde, Friskhet, Bitterhet, Sodme, Argang(Noen har ikke Årgang),
-  Alkohol, Sukker, APK
-Specifying the respective keys allows for searching for specific products, for example: Land=Italia
- Allowed: Varenavn, Varetype, land, Distrikt
-Using && between keys allows for specifying several types
- */
+const router = express.Router()
 
   // Allow client to fetch data
   router.use(function(req, res, next) {
@@ -54,8 +44,7 @@ router.get('/product',(req, res) => {
   if (req.query.Volum) {
     content.Volum = {$regex: RegExp(req.query.Volum), $options:'-i'};
   }
-  
-
+ 
   ProductModel.paginate(content,{
     page: pages,
     limit: lim,
@@ -66,6 +55,33 @@ router.get('/product',(req, res) => {
     .catch(err => {
       res.status(500).json(err);
     })
+});
+
+// UPDATE
+router.put('/product',(req, res) => {
+
+  if(req.query.Liker) {
+    ProductModel.findOneAndUpdate({
+      Varenummer: req.query.Varenummer,
+    },{ $inc: {Liker :1 }})
+      .then(doc => {
+      res.json(doc)
+    })
+      .catch(err => {
+        res.status(500).json(err)
+      })
+    }
+  if(req.query.Misliker) {
+    ProductModel.findOneAndUpdate({
+      Varenummer: req.query.Varenummer,
+    },{ $inc: {Misliker :1 }})
+      .then(doc => {
+        res.json(doc)
+      })
+      .catch(err => {
+        res.status(500).json(err)
+      })
+  }
 });
 
 export default router;

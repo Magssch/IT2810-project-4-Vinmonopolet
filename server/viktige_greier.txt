@@ -6,3 +6,13 @@ db.inventory.find()
 
 For å legge til random likes
 db.inventory.find().forEach( function (x) { x.Misliker = Math.floor(Math.random() * (1001) ); db.inventory.save(x) } )
+
+
+For å gi en kategori
+db.inventory.find({Varetype: 'India Pale Ale'}).forEach( function (Produkt) {Produkt.Kategori = 'Øl'})
+
+For å endre NaN til 0. 
+db.inventory.find({'Argang': 0/0}).forEach(function(x) {    x.Sukker = 0;db.inventory.save(x); }  );
+
+For å sjekke om noen varer ikke hadde fått kategori
+db.inventory.find({'Argang': 0/0}).forEach(function(x) {    x.Sukker = 0;db.inventory.save(x); }  );
