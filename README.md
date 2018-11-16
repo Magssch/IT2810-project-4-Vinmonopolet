@@ -41,6 +41,7 @@ vil grafen om smakssammensetning være blank.
 * axios
 * react-chart
 * react-responsive-modal
+* lodash
 
 
 ## Backend
@@ -65,7 +66,7 @@ Mappestrukturen i backend-delen av prosjektet er som følger:
 
 ```
 
-Hvordan bruke REST url:
+##Hvordan bruke REST url:
 ### Generelt
 Basert på hvordan du skriver urlen kan du velge hvilket søk du vil gjøre, hva det skal sorteres på og om det skal være ascending eller descending.
 	eks: - localhost:3000/product
@@ -210,7 +211,7 @@ Cypress-testfilene ligger på følgende sted i prosjektmappen:
 ```
 (`search_query_spec.js`, `put_request_spec.js` og `navigation_spec.js` er testene av interesse)
 
-### Jest / Enzyme
+### Jest
 For å hjelpe oss med vårt utvalg av systematiske enhetstester har vi benytet oss av Jest.
 For å vise at vi behersker systematisk enhetstesting har vi derfor lagt vekt på å teste komponenter
 som ikke inneholder andre komponenter igjen. Alle våre enhetstester ligger lokalisert i `src` ->
