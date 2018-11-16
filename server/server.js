@@ -4,10 +4,8 @@ import path from 'path';
 import customerRoute from './routes/customer'
 import productRoute from './routes/product'
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 
 const app = express();
-dotenv.load({path: '.env'});
 
 app.use(bodyParser.json());
 app.use(productRoute);
@@ -19,7 +17,8 @@ app.use((req,res,next) => {
 });
 
 //lokalt:
-const server=process.env.NODE_ENV;
+// const server=process.env.NODE_ENV;
+const server = 'mongodb://it2810-46.idi.ntnu.no:27017/test'
 
 //Connect to the database(only done once)
 //mongoose.connect(`mongodb://${user}:${password}@${server}/${database}`)
@@ -43,14 +42,12 @@ app.use((req,res,next) => {
 })
 
 // Handler for 500
-app.use((err,req,res,next) => {
+app.use((err,req,res,next) => { 
   console.error(err.stack)
   res.sendFile(path.join(__dirname,'../public/500.html'))
 })
-var PORT = 6000;
+var PORT = 12000;
 
-// startServer();
-app.listen(PORT, () => console.info(`Server has started on ${PORT}`));
+module.exports = app.listen(PORT, () => console.info(`Server has started on ${PORT}`));
 
 //here
-export default server;

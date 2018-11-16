@@ -87,4 +87,23 @@ router.put('/product',(req, res) => {
   }
 });
 
+
+//Create a new product
+router.post('/product', (req,res) => {
+  //tell express what to do with the json data
+  // req.body
+
+  let model = new ProductModel(req.body)
+  model.save()
+    .then(doc => {
+      if(!doc || doc.length === 0) {
+        return res.status(500).send(doc)
+      }
+      res.status(201).send(doc)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
+
 export default router;
