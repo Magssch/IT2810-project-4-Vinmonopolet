@@ -8,10 +8,6 @@ let product = require('../models/product.model')
 chai.use(chaiHttp);
 let should = chai.should();
 
-const sleep = (milliseconds) => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds))
-}
-
 let productToSend = {
    "_id":"5bec32af22fd990159ad4386",
    "Varenummer":1101,
