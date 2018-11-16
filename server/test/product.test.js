@@ -131,4 +131,10 @@ describe('Products', () => {
     });
   
     });
+
+    after((done) => { //Empty the database before every test
+      product.remove({}, (err) => {
+         done();
+      });
+   });
   });

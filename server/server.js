@@ -3,15 +3,11 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import productRoute from './routes/product'
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import cors from 'cors';
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(productRoute);
-app.use(customerRoute);
-app.use(cors());
 
 
 app.use((req,res,next) => {  
