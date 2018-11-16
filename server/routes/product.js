@@ -8,7 +8,8 @@ const router = express.Router()
   router.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*'); // Can change * to allow request from specific clients
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
+      res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+      next();
 });
 
 router.get('/product',(req, res) => {
