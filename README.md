@@ -2,19 +2,25 @@
 #### Magnus Schjølberg, Åsmund Haugse, Viktor Solberg
 
 ## Overordnet beskrivelse av prosjektet
-Informasjon om Vinmonopolets produkter er fritt tilgjengelig for bruk i egne tjenester.
-Vi har i denne oppgaven derfor benyttet oss av deres produktdatabase, hentet ut alle produkter
-og lagt disse inn i vår egen database som kjører på NTNU sine servere. Vi har både trimmet bort
+Informasjon om Vinmonopolets produkter ligger fritt tilgjengelig for bruk i egne tjenester.
+Vi har i denne oppgaven derfor benyttet oss av deres produktdatabase fra https://www.vinmonopolet.no/datadeling, hentet ut alle produkter
+og lagt disse inn i vår egen database som kjører på NTNU sine servere. 
+
+Vi har både trimmet bort
 datafelter som vi ikke har sett behov for i vår oppgave, samt lagt til ekstra fiktive felter for tilbakemeldinger
 i form av "likes" og "dislikes". For å hente ut dataene har vi implentert et REST api som tillater
 oss å hente ut data med http-forespørsler. Disse dataene blir både presentert og visualisert via
 nettsiden vår. Den består av en logo øverst, deretter et søkefelt samt tre valg for filtrering av data
-på volum, land og type(øl, vin, brennevin, etc..). Nederst har siden en tabell som inneholder alle
+på volum, land og type(øl, vin, brennevin, etc..). 
+
+Nederst har siden en tabell som inneholder alle
 produkter som blir returnert av søket som sendes til serveren. Den laster inn ti produkter om gangen
 og laster inn flere dersom en scroller seg ned til det nederste produktet. Ved å klikke på de
 øverste kolonnene (Varenavn, Varetype, Volum, Pris, Land, Alkohol/krone) vil tabellen sorteres
 etter den respektive kolonnen som blir klikket. Radene blir da sortert enten alfabetisk eller kronologisk
-ved første klikk. Og motsatt-alfabetisk/motsatt-kronologisk ved andre klikk. Brukeren av nettsiden har også
+ved første klikk. Og motsatt-alfabetisk/motsatt-kronologisk ved andre klikk. 
+
+Brukeren av nettsiden har også
 mulighet for å se utdypende informasjon om hvert produkt ved å klikke på produktets rad. Da vil
 et nytt vindu dukke opp med utdypende informasjon om produktet som blir klikket. Dette vinduet inneholder
 informasjon om smak, lukt, hvilke typer mat produktet passer til, årgang og literpris. Vinduet inneholder
@@ -35,6 +41,7 @@ vil grafen om smakssammensetning være blank.
 * axios
 * react-chart
 * react-responsive-modal
+* lodash
 
 
 ## Backend
@@ -59,7 +66,7 @@ Mappestrukturen i backend-delen av prosjektet er som følger:
 
 ```
 
-Hvordan bruke REST url:
+##Hvordan bruke REST url:
 ### Generelt
 Basert på hvordan du skriver urlen kan du velge hvilket søk du vil gjøre, hva det skal sorteres på og om det skal være ascending eller descending.
 	eks: - localhost:3000/product
@@ -180,7 +187,7 @@ Som UI-bibliotek har vi valgt React-implementasjonen av Semantic UI. Vi har valg
 For å gjøre automatisert end-to-end testing har vi i vårt prosjekt benyttet oss av Cypress.
 Dette er et verktøy som lar oss skrive automatiserte tester som interagerer med siden på samme måte som et menneske ville gjort.
 For å vise grunnleggende ferdigheter i denne typen testing har vi derfor laget to tester som til sammen tester det meste av funksjonalitet på siden.
-Du kan kjøre cypress ved å først `cd client` og deretter skrive `npm run cypress`. Du vil da finne to tester, `navigation_spec.js` og `search_query_spec.js` som henholdsvis tester navigering på siden og søking i databasen.
+Du kan kjøre cypress ved å først `cd client` og deretter skrive `npm run cypress`. Du vil da finne tre tester, `navigation_spec.js`, `put_request_spec.js` og `search_query_spec.js` som henholdsvis tester navigering på siden, endring av verdier i databasen og søking i databasen.
 Disse kan du kjøre ved å trykke deg inn på de og du skal deretter få opp et nettleser-vindu hvor disse testene kjøres.
 Cypress gir også en tidslinje for testingen i venstre sidebar, du kan trykke på de forskjellige hendelsene for å se hva testen så og søkte etter i det tidspunktet.
 
@@ -191,6 +198,7 @@ Cypress-testfilene ligger på følgende sted i prosjektmappen:
 │   │   ├───integration
 │   │   │   │
 │   │   │   ├───navigation_spec.js
+│   │   │   ├───put_request_spec.js
 │   │   │   └───search_query_spec.js
 │   │   │   
 │   │   ├───fixtures
@@ -201,7 +209,7 @@ Cypress-testfilene ligger på følgende sted i prosjektmappen:
 └───server
 
 ```
-(`search_query_spec.js` og `navigation_spec.js` er testene av interesse)
+(`search_query_spec.js`, `put_request_spec.js` og `navigation_spec.js` er testene av interesse)
 
 ### Jest
 For å hjelpe oss med vårt utvalg av systematiske enhetstester har vi benytet oss av Jest.
