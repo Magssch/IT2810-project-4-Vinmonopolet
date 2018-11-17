@@ -38,7 +38,7 @@ class AppContent extends Component {
 
     // Generates REST-query based on current search query and sorting in Redux-state
     generateQuery = () => {
-        return "http://localhost:12000/Product?" +
+        return "http://it2810-46.idi.ntnu.no:12000/Product?" +
             ((!this.props.search_query.name) ? '' : `&Varenavn=${this.props.search_query.name}`) +
             ((!this.props.search_query.volume) ? '' : `&Volum=${this.props.search_query.volume}`) +
             ((!this.props.search_query.country) ? '' : `&Land=${this.props.search_query.country}`) +

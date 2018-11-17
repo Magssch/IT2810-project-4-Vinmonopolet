@@ -29,7 +29,7 @@ class ListView extends Component {
 
     // Handler that is run upon giving a like or dislike on an item in ListItem.
     handleRating = (index, isLike) => {
-        axios.put(`http://localhost:12000/Product?Varenummer=${this.props.items[index].Varenummer}&${isLike ? 'Liker' : 'Misliker'}=True`
+        axios.put(`http://it2810-46.idi.ntnu.no:12000/Product?Varenummer=${this.props.items[index].Varenummer}&${isLike ? 'Liker' : 'Misliker'}=True`
             ).catch(error => {
                 console.log('Feil');console.log(error); } );
                     //this.props.set_field(index, (isLike ? 'Liker' : 'Misliker'), true)
