@@ -26,7 +26,10 @@ et nytt vindu dukke opp med utdypende informasjon om produktet som blir klikket.
 informasjon om smak, lukt, hvilke typer mat produktet passer til, årgang og literpris. Vinduet inneholder
 også to grafer som illustrerer henholdsvis smakssammensetning og tilbakemeldinger i form av "likes" og
 "dislikes". Merk at for produkter som ikke inneholder data for verken friskhet, bitterhet eller sødme
-vil grafen om smakssammensetning være blank.
+vil grafen om smakssammensetning være blank. Brukeren har også mulighet til å generere egen data som 
+brukeren kan lagre på serveren i form av "likes" og "dislikes". Disse dataene genereres ved at brukeren
+klikker enten på tommelopp- eller tommelned-symbolene i radene til produktene. Disse "liksene" eller
+"disliksene" vil deretter oppdateres og lagres på serveren.
 
 
 
