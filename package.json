@@ -4,7 +4,7 @@
   "description": "Prosjekt4 i IT2810 H18",
   "main": "index.js",
   "scripts": {
-    "test": "cd server && npm run test --test-coverage",
+    "test": "cd server && npm run test",
     "server": "cd server && npm run webserver",
     "start": "cd client && npm start"
   },
