@@ -3,7 +3,7 @@ let chaiHttp = require('chai-http');
 
 
 let server = require('../src');
-let product = require('./src/models/product.model')
+let product = require('../src/models/product.model');
 
 chai.use(chaiHttp);
 let should = chai.should();
