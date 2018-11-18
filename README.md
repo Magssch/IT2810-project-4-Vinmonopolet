@@ -105,9 +105,9 @@ resultater gjør man en ny get med page=page+1
 ## Frontend
 
 ### Mappestruktur
-Mappestrukturen i frontend-delen av prosjektet er som følger, `/client/src`:
+Mappestrukturen i frontend-delen av prosjektet er som følger, `/client`:
 ```
-└───client
+└───src
     │───__tests__
     ├───actions
     ├───components
